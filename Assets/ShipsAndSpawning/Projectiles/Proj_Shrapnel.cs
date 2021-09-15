@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Proj_Shrapnel : Projectile
+{
+
+    public float VelocityFloor = 3f;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnHit(collision.gameObject);
+    }
+
+    private void PredictCollision()
+    {
+        int layermask = 1 << 2;
+        layermask = ~layermask;
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(gameObject.transform.position, DeltaVelocity.normalized, DeltaVelocity.magnitude * Time.fixedDeltaTime, layermask);
+        //Debug.Log(hits.Length);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            OnHit(hits[i].collider.gameObject);
+        }
+    }
+
+    float maxDist;
+    float maxVelocity;
+
+
+    public override void PostStart()
+    {
+        maxVelocity = Velocity;
+        maxDist = DistanceLifespan;
+    }
+
+    public override void PostFixedUpdate()
+    {
+
+        Velocity = maxVelocity * (DistanceLifespan / maxDist) + VelocityFloor;
+
+        if (HitPrediction)
+            PredictCollision();
+        transform.position += transform.right * Velocity * Time.fixedDeltaTime;
+    }
+
+    public override void OnHit(GameObject gameObject)
+    {
+        Entity enemyEntityScript = (Entity)gameObject.GetComponent(typeof(Entity));
+
+        if (enemyEntityScript == null) return;
+
+        //Debug.Log(AllegianceInfo.CanHit(enemyEntityScript.AllegianceInfo.Faction, AllegianceInfo.ID));
+
+        /* Debug.Log("enemy: " + enemyEntityScript.AllegianceInfo.Faction + ", " 
+            + enemyEntityScript.AllegianceInfo.ID 
+            + "; this: " + AllegianceInfo.Faction + ", " + AllegianceInfo.ID); */
+        if (AllegianceInfo.CanHit(enemyEntityScript.AllegianceInfo.Faction, enemyEntityScript.AllegianceInfo.ID))
+        {
+            enemyEntityScript.HitpointHandler?.OnHit(Damage);
+            OnDestruction();
+        }
+    }
+
+}
