@@ -85,4 +85,10 @@ public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
         gameObject.SetActive(false);
         return this;
     }
+
+    public override void OnDestruction()
+    {
+        Pooler.Instance.PoolGameObject(PoolableGameObjectLink);
+    }
+
 }

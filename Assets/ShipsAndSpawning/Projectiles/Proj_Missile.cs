@@ -140,4 +140,9 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
         gameObject.SetActive(false);
         return this;
     }
+
+    public override void OnDestruction()
+    {
+        Pooler.Instance.PoolGameObject(PoolableGameObjectLink);
+    }
 }

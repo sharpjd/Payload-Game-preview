@@ -27,7 +27,7 @@ public class MinionSpawner : AIModule
             if (DoNotSpawnIfNoTarget && Target == null) return;
 
             LastTimeSpawned = Time.time;
-            GameObject instantiatedThing = Instantiate(ThingToSpawn);
+            GameObject instantiatedThing = Pooler.Instance.GetPooledGameObject(PooledObjectType.Minion) ?? Instantiate(ThingToSpawn);
 
             CarrierControlledEntity instantiatedThingEntity = instantiatedThing.GetComponent<CarrierControlledEntity>();
             if (instantiatedThingEntity != null)

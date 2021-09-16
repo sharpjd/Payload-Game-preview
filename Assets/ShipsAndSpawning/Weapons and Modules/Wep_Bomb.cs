@@ -20,7 +20,10 @@ public class Wep_Bomb : Weapon
                 if (!onCoolDown)
                 {
 
-                    Projectile projectile = InstantiateProjectileTowardsTargetAt(ToInstantiate, transform, target, this);
+                    Projectile projectile = Pooler.Instance.GetPooledGameObject(PooledObjectType.Bomb)?.GetComponent<Projectile>() ?? InstantiateProjectileHere(ToInstantiate);
+
+                    PointProjectileTowardsTargetAt(projectile.gameObject, transform, target, this);
+
                     //wow this code is awful
                     if (OnlyFireWithinRange && Vector2.Distance(transform.position, target.transform.position) <= Range)
                     {

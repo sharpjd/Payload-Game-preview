@@ -70,4 +70,9 @@ public class Proj_Regular : Projectile, IOnPoolAndRetrieve
         gameObject.SetActive(false);
         return this;
     }
+
+    public override void OnDestruction()
+    {
+        Pooler.Instance.PoolGameObject(PoolableGameObjectLink);
+    }
 }

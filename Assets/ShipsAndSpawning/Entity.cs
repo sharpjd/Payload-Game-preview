@@ -223,6 +223,11 @@ public class Entity : MonoBehaviour
         Destroy(SelectionAnimation);
     }
 
+    /*
+     * this boolean prevents the OnDestruction() function from being called an absurd amount of times in one frame 
+     * (e.g. when many Shrapnel projectiles hit it at all at once) and causing immense lag due to many death animations
+     * being instantiated at once
+     */
     protected bool didDestruct = false;
     public virtual void OnDestruction()
     {

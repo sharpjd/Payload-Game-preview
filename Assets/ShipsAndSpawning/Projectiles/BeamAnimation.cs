@@ -41,8 +41,14 @@ public class BeamAnimation : MonoBehaviour, IOnPoolAndRetrieve
         SpriteRenderer.color -= new Color(0, 0, 0, TransparencyReductionPerSecond * Time.deltaTime);
         if(SpriteRenderer.color.a <= 0f)
         {
-            Destroy(gameObject);
+            Pool();
         }
     }
+
+    void Pool()
+    {
+        Pooler.Instance.PoolGameObject(PoolableGameObjectLink);
+    }
+
 }
 

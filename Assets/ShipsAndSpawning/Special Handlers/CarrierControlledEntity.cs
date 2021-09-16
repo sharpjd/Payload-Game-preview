@@ -22,6 +22,7 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
         OnDehighlight();
         HitpointHandler.Hitpoints = HitpointHandler.MaxHitpoints;
         Destroy(AllegianceInfo);
+        didDestruct = false;
 
         return this;
     }
@@ -33,4 +34,23 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
             OnDestruction();
         }
     }
+
+    public override void OnDestruction()
+    {
+        if (didDestruct) return;
+
+        didDestruct = true;
+
+        if (PlayDestructionAnimationOnDeath)
+            PlayDestructionAnimation();
+
+        OnDeselectAndRemoveFromSelected();
+
+        IsDead = true;
+
+        LevelHandler.Instance.CheckForTeamEliminated(AllegianceInfo.Faction);
+
+        Pooler.Instance.PoolGameObject(PoolableGameObjectLink);
+    }
+
 }
