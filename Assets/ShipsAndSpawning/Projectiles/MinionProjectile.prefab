@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4694379249866802118}
   - component: {fileID: 4197821856817627315}
   - component: {fileID: -7466527192907693128}
+  - component: {fileID: 3639611460708022689}
   m_Layer: 2
   m_Name: MinionProjectile
   m_TagString: Untagged
@@ -147,3 +148,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3639611460708022689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8631558538654163836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b99de82d018914b80d984db6f7cd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectType: 5

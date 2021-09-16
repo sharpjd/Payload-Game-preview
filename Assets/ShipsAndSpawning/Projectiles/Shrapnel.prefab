@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 897677044155757233}
   - component: {fileID: 8579728037813678532}
   - component: {fileID: 2195864604583945020}
+  - component: {fileID: 4381616376814233520}
   m_Layer: 2
   m_Name: Shrapnel
   m_TagString: Untagged
@@ -148,3 +149,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4381616376814233520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222561500320174603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b99de82d018914b80d984db6f7cd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectType: 1

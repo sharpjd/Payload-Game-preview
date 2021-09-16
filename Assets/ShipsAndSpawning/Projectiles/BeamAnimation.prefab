@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5953400873582204786}
   - component: {fileID: 8072678758904085678}
   - component: {fileID: 6141830978608972521}
+  - component: {fileID: 2110254612764931168}
   m_Layer: 0
   m_Name: BeamAnimation
   m_TagString: Untagged
@@ -97,3 +98,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpriteRenderer: {fileID: 8072678758904085678}
   TransparencyReductionPerSecond: 2.3
+--- !u!114 &2110254612764931168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537651184648680637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b99de82d018914b80d984db6f7cd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectType: 6

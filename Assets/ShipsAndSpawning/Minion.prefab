@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1685031381547457339}
   - component: {fileID: 1001717021229844206}
   - component: {fileID: 4361199267296849253}
+  - component: {fileID: 3342618219513384550}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -284,3 +285,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3342618219513384550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5483503564575394015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b99de82d018914b80d984db6f7cd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectType: 4

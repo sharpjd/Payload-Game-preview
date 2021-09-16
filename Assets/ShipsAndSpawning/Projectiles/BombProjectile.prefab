@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2726030314155129937}
   - component: {fileID: 4462441227449570138}
   - component: {fileID: 8999955419321649068}
+  - component: {fileID: 6406588521898861826}
   m_Layer: 2
   m_Name: BombProjectile
   m_TagString: Untagged
@@ -184,7 +185,6 @@ MonoBehaviour:
   FireRateSecs: 0
   MagazineSizeMax: 0
   ReloadTimeSecs: 0
-  projectileInstantiator: {fileID: 0}
   _ToInstantiate: {fileID: 4222561500320174603, guid: 03d1b08a041c0cf4db49d515f5c7260d, type: 3}
   _ParentEntity: {fileID: -1493465930650013914}
   _AttachedRadar: {fileID: 2726030314155129937}
@@ -240,3 +240,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6406588521898861826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8098909027808080021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b99de82d018914b80d984db6f7cd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectType: 2
