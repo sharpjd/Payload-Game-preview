@@ -20,7 +20,7 @@ public class Wep_Bomb : Weapon
                 if (!onCoolDown)
                 {
 
-                    Projectile projectile = projectileInstantiator.InstantiateProjectileTowardsTargetAt(ToInstantiate, transform, target, this);
+                    Projectile projectile = InstantiateProjectileTowardsTargetAt(ToInstantiate, transform, target, this);
                     //wow this code is awful
                     if (OnlyFireWithinRange && Vector2.Distance(transform.position, target.transform.position) <= Range)
                     {

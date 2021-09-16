@@ -88,7 +88,7 @@ public class Proj_Bomb : Projectile
         {
             
 
-            Projectile projectile = SubProjectileWeapon.projectileInstantiator.InstantiateProjectileHere(SubProjectileWeapon.ToInstantiate);
+            Projectile projectile = SubProjectileWeapon.InstantiateProjectileHere(SubProjectileWeapon.ToInstantiate);
 
             Quaternion dir = Quaternion.Euler(0f, 0f, Random.Range(-SubProjectileSpreadArcDegrees, SubProjectileSpreadArcDegrees) + transform.rotation.eulerAngles.z);
 

@@ -27,7 +27,7 @@ public class Entity : MonoBehaviour
     public bool OnlyTargetAllies = false;
 
     public bool PlayDestructionAnimationOnDeath = true;
-    public GameObject DestructionPrefab; 
+    public GameObject DestructionPrefab;
 
     public Vector2 pushQueue;
     public AllegianceInfo AllegianceInfo

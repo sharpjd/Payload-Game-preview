@@ -16,8 +16,6 @@ public class Weapon : MonoBehaviour
     public int MagazineSizeMax = 1;
     public float ReloadTimeSecs = 3f;
 
-    public ProjectileInstantiator projectileInstantiator;
-
     public GameObject ToInstantiate
     {
         get
@@ -129,10 +127,6 @@ public class Weapon : MonoBehaviour
     public void Start()
     {
 
-        projectileInstantiator = gameObject.AddComponent<ProjectileInstantiator>();
-
-        projectileInstantiator.PWeapon = this;
-
         if (_ParentEntity == null)
         {
             _ParentEntity = GetComponent<Entity>();
@@ -199,11 +193,11 @@ public class Weapon : MonoBehaviour
                     //wow this code is awful
                     if (OnlyFireWithinRange && Vector2.Distance(transform.position, target.transform.position) <= Range)
                     {
-                        projectileInstantiator.InstantiateProjectileTowardsTargetWithParent(ToInstantiate, PEntity, target, this);
+                        InstantiateProjectileTowardsTargetWithParent(ToInstantiate, PEntity, target, this);
                         goto EndAndInvokeCooldown;
                     }
                     //this will only be executed if OnlyFireWithinRange is false
-                    projectileInstantiator.InstantiateProjectileTowardsTargetWithParent(ToInstantiate, PEntity, target, this);
+                    InstantiateProjectileTowardsTargetWithParent(ToInstantiate, PEntity, target, this);
 
                     EndAndInvokeCooldown:
                     shotsLeft--;
@@ -255,10 +249,116 @@ public class Weapon : MonoBehaviour
 
         //}
     }
-    public class CannotHitException : Exception
-    {
 
+    public Projectile InstantiateProjectileHere(GameObject thingToInstantiate)
+    {
+        Projectile projectileObject = Instantiate(thingToInstantiate).GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException(); ;
+
+        projectileObject.transform.position = transform.position;
+        projectileObject.prevPosition = transform.position;
+
+        projectileObject.InstantiatedFromInstantiater = true;
+        projectileObject.gameObject.SetActive(true);
+        return projectileObject;
     }
+
+    public Projectile InstantiateProjectileAtParent(GameObject thingToInstantiate, Entity parentEntity)
+    {
+        Projectile projectileObject = Instantiate(thingToInstantiate).GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException(); ;
+        projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(parentEntity.AllegianceInfo.GetType());
+        projectileObject.PEntity = parentEntity;
+
+        projectileObject.transform.position = parentEntity.transform.position;
+        projectileObject.prevPosition = parentEntity.transform.position;
+
+        projectileObject.SpriteRenderer.color = parentEntity.AllegianceInfo.FactionColor;
+
+        projectileObject.InstantiatedFromInstantiater = true;
+        projectileObject.gameObject.SetActive(true);
+        return projectileObject;
+    }
+
+    public Projectile InstantiateProjectileAtParentWithTarget(GameObject thingToInstantiate, Entity parentEntity, Entity targetEntity)
+    {
+        Projectile projectileObject = Instantiate(thingToInstantiate).GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException(); ;
+        projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(parentEntity.AllegianceInfo.GetType());
+        projectileObject.PEntity = parentEntity;
+
+        projectileObject.transform.position = parentEntity.transform.position;
+        projectileObject.prevPosition = parentEntity.transform.position;
+
+        projectileObject.TargetEntity = targetEntity;
+
+        projectileObject.SpriteRenderer.color = parentEntity.AllegianceInfo.FactionColor;
+
+        projectileObject.InstantiatedFromInstantiater = true;
+        projectileObject.gameObject.SetActive(true);
+        return projectileObject;
+    }
+
+    public Projectile InstantiateProjectileTowardsTargetWithParent(GameObject thingToInstantiate, Entity parentEntity, Entity targetEntity, Weapon callerForShotPrediction, bool pointToTarget = true, bool predictPosition = true)
+    {
+        Projectile projectileObject = Instantiate(thingToInstantiate).GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException();
+        projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(parentEntity.AllegianceInfo.GetType());
+        projectileObject.PEntity = parentEntity;
+
+        projectileObject.transform.position = parentEntity.transform.position;
+        projectileObject.prevPosition = parentEntity.transform.position;
+
+        projectileObject.SpriteRenderer.color = parentEntity.AllegianceInfo.FactionColor;
+
+        projectileObject.TargetEntity = targetEntity;
+        if (pointToTarget)
+        {
+            //There is definitely some funky stuff going on here; try changing rotation manually
+            if (predictPosition)
+            {
+                projectileObject.PointTowardsAndSetRotationXYToZero(callerForShotPrediction.PredictShotTo(targetEntity.transform, targetEntity.DeltaVelocity));
+            }
+            else
+            {
+                projectileObject.PointTowardsAndSetRotationXYToZero(targetEntity.transform.position);
+            }
+        }
+        projectileObject.InstantiatedFromInstantiater = true;
+        projectileObject.gameObject.SetActive(true);
+        return projectileObject;
+    }
+
+    public Projectile InstantiateProjectileTowardsTargetAt(GameObject thingToInstantiate, Transform transform, Entity targetEntity, Weapon callerForShotPrediction, bool pointToTarget = true, bool predictPosition = true)
+    {
+        Projectile projectileObject = Instantiate(thingToInstantiate).GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException(); ;
+
+        projectileObject.transform.position = transform.position;
+        projectileObject.prevPosition = transform.position;
+
+        projectileObject.TargetEntity = targetEntity;
+        if (pointToTarget)
+        {
+            //There is definitely some funky stuff going on here; try changing rotation manually
+            if (predictPosition)
+            {
+                projectileObject.PointTowardsAndSetRotationXYToZero(callerForShotPrediction.PredictShotTo(targetEntity.transform, targetEntity.DeltaVelocity));
+            }
+            else
+            {
+                projectileObject.PointTowardsAndSetRotationXYToZero(targetEntity.transform.position);
+            }
+        }
+        projectileObject.InstantiatedFromInstantiater = true;
+        projectileObject.gameObject.SetActive(true);
+        return projectileObject;
+    }
+}
+
+public class PrefabNoProjectileComponentException : System.Exception
+{
+
+}
+
+
+public class CannotHitException : Exception
+{
 
 }
 

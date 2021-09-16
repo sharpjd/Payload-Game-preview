@@ -21,11 +21,11 @@ public class Wep_Laser : Weapon
                     //wow this code is awful
                     if (OnlyFireWithinRange && Vector2.Distance(transform.position, target.transform.position) <= Range)
                     {
-                        projectileInstantiator.InstantiateProjectileAtParentWithTarget(ToInstantiate, PEntity, target);
+                        InstantiateProjectileAtParentWithTarget(ToInstantiate, PEntity, target);
                         goto EndAndInvokeCooldown;
                     }
                     //this will only be executed if OnlyFireWithinRange is false
-                    projectileInstantiator.InstantiateProjectileAtParentWithTarget(ToInstantiate, PEntity, target);
+                    InstantiateProjectileAtParentWithTarget(ToInstantiate, PEntity, target);
 
                     EndAndInvokeCooldown:
                     shotsLeft--;
