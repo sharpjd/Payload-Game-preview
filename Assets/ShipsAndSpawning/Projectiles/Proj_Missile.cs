@@ -2,14 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proj_Missile : Projectile
+[RequireComponent(typeof(PoolableGameObjectLink))]
+public class Proj_Missile : Projectile, IOnPoolAndRetrieve
 {
 
-    public float InitialVelocity = 1f;
+    public PoolableGameObjectLink PoolableGameObjectLink { get; set; }
+
+    public float CurrentVelocity = 1f;
     public float AccelerationPerSecond = 20f;
     public float TurnRate = 120f;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    float m_InitialVelocity;
+
+    private void Start()
+    {
+        PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
+    }
+
+    private void Awake()
+    {
+        m_InitialVelocity = CurrentVelocity;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         OnHit(collision.gameObject);
     }
@@ -29,8 +44,8 @@ public class Proj_Missile : Projectile
 
     public override void PostFixedUpdate()
     {
-        if (InitialVelocity <= Velocity)
-            InitialVelocity += AccelerationPerSecond * Time.fixedDeltaTime;
+        if (CurrentVelocity <= Velocity)
+            CurrentVelocity += AccelerationPerSecond * Time.fixedDeltaTime;
 
         if (HitPrediction)
             PredictCollision();
@@ -106,5 +121,23 @@ public class Proj_Missile : Projectile
             LastUpdateTime = Time.time;
             TargetEntity = Targets.GetClosestTarget(transform.position, PEntity, new List<ShipType>());
         }
+    }
+
+    public IOnPoolAndRetrieve OnRetrieve()
+    {
+        return this;
+    }
+
+    public IOnPoolAndRetrieve OnPool()
+    {
+
+        DistanceLifespan = m_DistanceLifeSpan;
+        ExpirationSeconds = m_ExpirationSeconds;
+        CurrentVelocity = m_InitialVelocity;
+        Destroy(AllegianceInfo);
+        DeltaVelocity = new Vector2();
+
+        gameObject.SetActive(false);
+        return this;
     }
 }

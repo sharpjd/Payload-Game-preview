@@ -3287,6 +3287,7 @@ GameObject:
   - component: {fileID: 1514344577}
   - component: {fileID: 1514344575}
   - component: {fileID: 1514344568}
+  - component: {fileID: 1514344578}
   m_Layer: 0
   m_Name: Game Handler
   m_TagString: Untagged
@@ -3639,6 +3640,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1514344578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514344562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57c11449e73f9a4db975205cef17c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1514344581
 MonoBehaviour:
   m_ObjectHideFlags: 0

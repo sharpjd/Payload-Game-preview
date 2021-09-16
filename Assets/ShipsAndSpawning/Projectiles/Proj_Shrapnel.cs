@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proj_Shrapnel : Projectile
+[RequireComponent(typeof(PoolableGameObjectLink))]
+public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
 {
 
+    public PoolableGameObjectLink PoolableGameObjectLink { get; set; }
+
     public float VelocityFloor = 3f;
+
+    private void Start()
+    {
+        PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,7 +35,6 @@ public class Proj_Shrapnel : Projectile
 
     float maxDist;
     float maxVelocity;
-
 
     public override void PostStart()
     {
@@ -63,4 +70,19 @@ public class Proj_Shrapnel : Projectile
         }
     }
 
+    public IOnPoolAndRetrieve OnRetrieve()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public IOnPoolAndRetrieve OnPool()
+    {
+        DistanceLifespan = m_DistanceLifeSpan;
+        ExpirationSeconds = m_ExpirationSeconds;
+        Destroy(AllegianceInfo);
+        DeltaVelocity = new Vector2();
+
+        gameObject.SetActive(false);
+        return this;
+    }
 }

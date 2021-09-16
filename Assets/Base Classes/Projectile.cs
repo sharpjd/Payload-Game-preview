@@ -18,9 +18,9 @@ public class Projectile : MonoBehaviour
 
     public Vector2 DeltaVelocity;
 
-    float m_Velocity;
-    float m_DistanceLifeSpan;
-    float m_ExpirationSeconds;
+    protected float m_Velocity;
+    protected float m_DistanceLifeSpan;
+    protected float m_ExpirationSeconds;
 
     private void Awake()
     {

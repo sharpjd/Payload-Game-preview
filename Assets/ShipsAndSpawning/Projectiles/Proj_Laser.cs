@@ -68,4 +68,6 @@ public class Proj_Laser : Projectile
 
         Destroy(gameObject);
     }
+
+
 }

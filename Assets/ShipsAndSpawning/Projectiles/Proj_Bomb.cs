@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proj_Bomb : Projectile
+[RequireComponent(typeof(PoolableGameObjectLink))]
+public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
 {
+
+    public PoolableGameObjectLink PoolableGameObjectLink { get; set; }
 
     public float FuseDistance;
 
@@ -16,6 +19,17 @@ public class Proj_Bomb : Projectile
     public float SubProjectileSpreadArcDegrees = 180f;
 
     public bool MakeSubProjectilesNeutral = true;
+
+    protected float m_FuseDistance;
+    private void Awake()
+    {
+        m_FuseDistance = FuseDistance;
+    }
+
+    private void Start()
+    {
+        PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -109,5 +123,22 @@ public class Proj_Bomb : Projectile
 
         Destroy(gameObject);
 
+    }
+
+    public IOnPoolAndRetrieve OnRetrieve()
+    {
+        return this;
+    }
+
+    public IOnPoolAndRetrieve OnPool()
+    {
+        DistanceLifespan = m_DistanceLifeSpan;
+        ExpirationSeconds = m_ExpirationSeconds;
+        FuseDistance = m_FuseDistance;
+        Destroy(AllegianceInfo);
+        DeltaVelocity = new Vector2();
+
+        gameObject.SetActive(false);
+        return this;
     }
 }

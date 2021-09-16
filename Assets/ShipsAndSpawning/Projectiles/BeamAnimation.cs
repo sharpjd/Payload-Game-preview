@@ -2,11 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeamAnimation : MonoBehaviour
+[RequireComponent(typeof(PoolableGameObjectLink))]
+public class BeamAnimation : MonoBehaviour, IOnPoolAndRetrieve
 {
 
+    public PoolableGameObjectLink PoolableGameObjectLink { get; set; }
     public SpriteRenderer SpriteRenderer;
     public float TransparencyReductionPerSecond = 2.3f;
+
+    
+
+    public IOnPoolAndRetrieve OnPool()
+    {
+        SpriteRenderer.color = new Color(0, 0, 0, 1);
+        gameObject.SetActive(false);
+        return this;
+    }
+
+    public IOnPoolAndRetrieve OnRetrieve()
+    {
+        return this;
+    }
 
     void Start()
     {
@@ -14,6 +30,8 @@ public class BeamAnimation : MonoBehaviour
         {
             Debug.LogError("Beam missing sprite renderer");
         }
+
+        PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
 
     }
 

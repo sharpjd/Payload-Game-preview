@@ -75,9 +75,6 @@ public class Entity : MonoBehaviour
 
     public void Start()
     {
-        
-
-        prevPosition = transform.position;
 
         if (DestructionPrefab == null)
         {
