@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 4114685883814690977}
   - component: {fileID: 610953465226914602}
   m_Layer: 0
-  m_Name: TestAIShip
+  m_Name: FIghter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46b6e5d29695ff4aaf1446a75f7ce7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDead: 0
   selected: 0
+  ShipType: 0
   trackInRadar: 1
   makeChildrenSameAllegiance: 1
   MovementAI: {fileID: 8711593493770931854}
@@ -111,6 +113,8 @@ MonoBehaviour:
   DeltaVelocity: {x: 0, y: 0}
   Selectable: 1
   OnlyTargetAllies: 0
+  PlayDestructionAnimationOnDeath: 1
+  DestructionPrefab: {fileID: 0}
   pushQueue: {x: 0, y: 0}
   _AllegianceInfo: {fileID: 0}
   SelectionCircleY: 2
@@ -142,6 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetingOverriden: 0
   PreventTargetOverride: 0
+  ShipTypesToIgnore: 
+  _target: {fileID: 0}
   _ParentEntity: {fileID: 8711593493770931853}
   _ParentRadar: {fileID: 8711593493770931852}
   Speed: 2.5
@@ -172,6 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetingOverriden: 0
   PreventTargetOverride: 0
+  ShipTypesToIgnore: 
+  _target: {fileID: 0}
   _ParentEntity: {fileID: 8711593493770931853}
   _ParentRadar: {fileID: 8711593493770931852}
   ListOfAIModulesToSetTarget:
@@ -203,20 +211,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8711593493770931856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31650c983c0f8f647946e84830e8db65, type: 3}
+  m_Script: {fileID: 11500000, guid: c695d4b85b7060347b88882cdc155da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnlyFireWithinRange: 1
-  Range: 0
-  FireRateSecs: 0.25
-  MagazineSizeMax: 3
-  ReloadTimeSecs: 2
-  _ToInstantiate: {fileID: 1234693168582235245, guid: 15ee90db8222e614f9cef02a209a4e84, type: 3}
-  _ParentEntity: {fileID: 8711593493770931853}
-  _AttachedRadar: {fileID: 8711593493770931852}
-  shotsLeft: 0
-  reloading: 0
-  onCoolDown: 0
 --- !u!114 &2566755250850323828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,9 +228,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetingOverriden: 0
   PreventTargetOverride: 0
+  ShipTypesToIgnore: 
+  _target: {fileID: 0}
   _ParentEntity: {fileID: 8711593493770931853}
   _ParentRadar: {fileID: 8711593493770931852}
-  Weapon: {fileID: 3428615973120912546}
+  Weapon: {fileID: 0}
   AlternativeTarget: {fileID: 0}
 --- !u!114 &4114685883814690977
 MonoBehaviour:

@@ -212,7 +212,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5483503564575394015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31650c983c0f8f647946e84830e8db65, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bb4c1ea8e5d1ff4285dd0c66508a62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyFireWithinRange: 1
@@ -220,7 +220,6 @@ MonoBehaviour:
   FireRateSecs: 0
   MagazineSizeMax: 1
   ReloadTimeSecs: 0.5
-  projectileInstantiator: {fileID: 0}
   _ToInstantiate: {fileID: 8631558538654163836, guid: d98077786d590a24fb77090d55a77ace, type: 3}
   _ParentEntity: {fileID: 5483503564575394014}
   _AttachedRadar: {fileID: 5483503564575393987}
