@@ -28,7 +28,7 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
 
     private void Start()
     {
-        PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
+        PoolableGameObjectLink ??= GetComponent<PoolableGameObjectLink>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -137,6 +137,7 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
         FuseDistance = m_FuseDistance;
         Destroy(AllegianceInfo);
         DeltaVelocity = new Vector2();
+        didDestruct = false;
 
         gameObject.SetActive(false);
         return this;

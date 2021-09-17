@@ -22,7 +22,7 @@ public class Wep_Bomb : Weapon
 
                     Projectile projectile = Pooler.Instance.GetPooledGameObject(PooledObjectType.Bomb)?.GetComponent<Projectile>() ?? InstantiateProjectileHere(ToInstantiate);
 
-                    PointProjectileTowardsTargetAt(projectile.gameObject, transform, target, this);
+                    PointProjectileTowardsTargetAtAndSetParent(projectile.gameObject, PEntity, target, transform, this);
 
                     //wow this code is awful
                     if (OnlyFireWithinRange && Vector2.Distance(transform.position, target.transform.position) <= Range)
