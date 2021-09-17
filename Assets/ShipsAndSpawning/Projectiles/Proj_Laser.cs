@@ -19,7 +19,7 @@ public class Proj_Laser : Projectile
         int layermask = 3 << 2;
         layermask = ~layermask;
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(gameObject.transform.position, TargetEntity.transform.position - transform.position, DistanceLifespan, layermask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(gameObject.transform.position, TargetEntity.transform.position - transform.position, DistanceLifeSpan, layermask);
         //Debug.Log(hits.Length);
 
         float closestDist = float.MaxValue;

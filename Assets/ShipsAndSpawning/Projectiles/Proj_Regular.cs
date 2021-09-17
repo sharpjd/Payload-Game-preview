@@ -62,7 +62,7 @@ public class Proj_Regular : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnPool()
     {
-        DistanceLifespan = m_DistanceLifeSpan;
+        DistanceLifeSpan = m_DistanceLifeSpan;
         ExpirationSeconds = m_ExpirationSeconds;
         Destroy(AllegianceInfo);
         DeltaVelocity = new Vector2();

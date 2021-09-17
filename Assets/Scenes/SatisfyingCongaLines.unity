@@ -2512,7 +2512,7 @@ MonoBehaviour:
   MaxColumnFormationHeightCount: 3
   XGapBetweenColumns: 2
   TotalYSpace: 0
-  GenerationRarityMultiplier: 0.75
+  GenerationRarityMultiplier: 10
   ChanceFloor: 0
   ChanceCeiling: 0
 --- !u!1 &1333526516

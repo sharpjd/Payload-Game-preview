@@ -121,7 +121,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void Awake()
     {       
-        
+
     }
 
     public void Start()
@@ -147,7 +147,7 @@ public class Weapon : MonoBehaviour
         }
 
         shotsLeft = MagazineSizeMax;
-        Range = ProjectileScript.DistanceLifespan;
+        Range = ProjectileScript.DistanceLifeSpan;
         PostStart();
     }
 
@@ -355,6 +355,7 @@ public class Weapon : MonoBehaviour
         Projectile projectileObject = thingToManipulate.GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException();
 
         projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(PEntity.AllegianceInfo.GetType());
+        projectileObject.SpriteRenderer.color = projectileObject.AllegianceInfo.FactionColor;
         projectileObject.PEntity = parentEntity;
 
         projectileObject.transform.position = transform.position;

@@ -131,7 +131,7 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
     public IOnPoolAndRetrieve OnPool()
     {
 
-        DistanceLifespan = m_DistanceLifeSpan;
+        DistanceLifeSpan = m_DistanceLifeSpan;
         ExpirationSeconds = m_ExpirationSeconds;
         CurrentVelocity = m_InitialVelocity;
         Destroy(AllegianceInfo);

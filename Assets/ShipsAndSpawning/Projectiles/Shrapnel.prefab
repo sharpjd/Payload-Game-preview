@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4222561500320174605}
   - component: {fileID: 897677044155757233}
   - component: {fileID: 8579728037813678532}
-  - component: {fileID: 2195864604583945020}
   - component: {fileID: 4381616376814233520}
   m_Layer: 2
   m_Name: Shrapnel
@@ -102,7 +101,7 @@ MonoBehaviour:
   HitPrediction: 1
   Velocity: 25
   Damage: 22
-  DistanceLifespan: 10
+  DistanceLifeSpan: 12
   DoExpire: 1
   ExpirationSeconds: 2
   TargetEntity: {fileID: 0}
@@ -110,6 +109,9 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 4222561500320174605}
   InstantiatedFromInstantiater: 0
   DeltaVelocity: {x: 0, y: 0}
+  m_Velocity: 0
+  m_DistanceLifeSpan: 0
+  m_ExpirationSeconds: 0
   prevPosition: {x: 0, y: 0}
   VelocityFloor: 3
 --- !u!58 &8579728037813678532
@@ -128,27 +130,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.8
---- !u!50 &2195864604583945020
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4222561500320174603}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &4381616376814233520
 MonoBehaviour:
   m_ObjectHideFlags: 0

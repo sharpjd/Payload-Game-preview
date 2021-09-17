@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombEntity : Entity
+public class BombEntity : Entity, IOnPoolAndRetrieve
 {
     public Proj_Bomb Proj_Bomb;
+
+    public PoolableGameObjectLink PoolableGameObjectLink { get; set; }
 
     public override void OnDestruction()
     {
@@ -17,4 +19,22 @@ public class BombEntity : Entity
         
     }
 
+    public IOnPoolAndRetrieve OnPool()
+    {
+        DeltaVelocity = new Vector2();
+        IsDead = true;
+        OnDeselectAndRemoveFromSelected();
+        OnDehighlight();
+        HitpointHandler.Hitpoints = HitpointHandler.MaxHitpoints;
+        Destroy(AllegianceInfo);
+        didDestruct = false;
+
+        return this;
+    }
+
+    public IOnPoolAndRetrieve OnRetrieve()
+    {
+        IsDead = false;
+        return this;
+    }
 }

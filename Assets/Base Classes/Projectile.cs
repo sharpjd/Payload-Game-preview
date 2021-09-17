@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public bool HitPrediction = true;
     public float Velocity = 20f;
     public float Damage = 10f;
-    public float DistanceLifespan = 30f;
+    public float DistanceLifeSpan = 30f;
     public bool DoExpire = true;
     public float ExpirationSeconds = 20f;
     public Entity TargetEntity;
@@ -18,15 +18,19 @@ public class Projectile : MonoBehaviour
 
     public Vector2 DeltaVelocity;
 
+    [SerializeField]
     protected float m_Velocity;
+    [SerializeField]
     protected float m_DistanceLifeSpan;
+    [SerializeField]
     protected float m_ExpirationSeconds;
 
     private void Awake()
     {
         m_Velocity = Velocity;
         m_ExpirationSeconds = ExpirationSeconds;
-        m_DistanceLifeSpan = DistanceLifespan;
+        m_DistanceLifeSpan = DistanceLifeSpan;
+
     }
 
     // Start is called before the first frame update
@@ -80,8 +84,8 @@ public class Projectile : MonoBehaviour
     {
         DeltaVelocity = ((Vector2)gameObject.transform.position - prevPosition) / Time.fixedDeltaTime;
         prevPosition = gameObject.transform.position;
-        DistanceLifespan -= DeltaVelocity.magnitude * Time.fixedDeltaTime;
-        if (DistanceLifespan <= 0f)
+        DistanceLifeSpan -= DeltaVelocity.magnitude * Time.fixedDeltaTime;
+        if (DistanceLifeSpan <= 0f)
             OnExpire();
 
         PostFixedUpdate();

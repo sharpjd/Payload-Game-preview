@@ -16,11 +16,6 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnPool()
     {
-        return this;
-    }
-
-    public IOnPoolAndRetrieve OnRetrieve()
-    {
         DeltaVelocity = new Vector2();
         IsDead = true;
         OnDeselectAndRemoveFromSelected();
@@ -28,7 +23,11 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
         HitpointHandler.Hitpoints = HitpointHandler.MaxHitpoints;
         Destroy(AllegianceInfo);
         didDestruct = false;
+        return this;
+    }
 
+    public IOnPoolAndRetrieve OnRetrieve()
+    {
         return this;
     }
 

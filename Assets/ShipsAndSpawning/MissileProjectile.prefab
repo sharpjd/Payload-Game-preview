@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -1603800352851577061}
   - component: {fileID: 673300601770770064}
   - component: {fileID: 4884042330251602698}
+  - component: {fileID: 7433486239439831196}
   m_Layer: 2
   m_Name: MissileProjectile
   m_TagString: Untagged
@@ -104,7 +105,7 @@ MonoBehaviour:
   HitPrediction: 1
   Velocity: 11
   Damage: 35
-  DistanceLifespan: 100
+  DistanceLifeSpan: 30
   DoExpire: 1
   ExpirationSeconds: 20
   TargetEntity: {fileID: 0}
@@ -113,7 +114,7 @@ MonoBehaviour:
   InstantiatedFromInstantiater: 0
   DeltaVelocity: {x: 0, y: 0}
   prevPosition: {x: 0, y: 0}
-  InitialVelocity: 1
+  CurrentVelocity: 1
   AccelerationPerSecond: 5
   TurnRate: 70
   AutoAcquireDelaySecs: 2
@@ -212,3 +213,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6808ab56e279b1d4c96b19ca8902dd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7433486239439831196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3295445155491914965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b99de82d018914b80d984db6f7cd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjectType: 3

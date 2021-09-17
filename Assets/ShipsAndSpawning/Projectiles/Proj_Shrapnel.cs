@@ -10,19 +10,11 @@ public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
 
     public float VelocityFloor = 3f;
 
-    float maxDist;
-    float maxVelocity;
-
     private void Awake()
     {
         PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
-    }
-
-    private void Start()
-    {
-
-        maxVelocity = Velocity;
-        maxDist = DistanceLifespan;
+        m_Velocity = Velocity;
+        m_DistanceLifeSpan = DistanceLifeSpan;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,7 +37,7 @@ public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
 
     public override void PostFixedUpdate()
     {
-        Velocity = maxVelocity * (DistanceLifespan / maxDist) + VelocityFloor;
+        Velocity = m_Velocity * (DistanceLifeSpan / m_DistanceLifeSpan) + VelocityFloor;
 
         if (HitPrediction)
             PredictCollision();
@@ -72,20 +64,20 @@ public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnRetrieve()
     {
+        gameObject.SetActive(true);
         return this;
     }
 
     public IOnPoolAndRetrieve OnPool()
     {
-        DistanceLifespan = m_DistanceLifeSpan;
+        DistanceLifeSpan = m_DistanceLifeSpan;
         ExpirationSeconds = m_ExpirationSeconds;
-        Velocity = maxVelocity;
-        maxVelocity = Velocity;
-        maxDist = DistanceLifespan;
+        Velocity = m_Velocity;
+        m_Velocity = Velocity;
+        m_DistanceLifeSpan = DistanceLifeSpan;
         Destroy(AllegianceInfo);
         DeltaVelocity = new Vector2();
 
-        gameObject.SetActive(false);
         return this;
     }
 

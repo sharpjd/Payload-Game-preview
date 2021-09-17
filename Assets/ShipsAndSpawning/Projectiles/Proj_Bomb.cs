@@ -19,10 +19,13 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
     public float SubProjectileSpreadArcDegrees = 180f;
 
     public bool MakeSubProjectilesNeutral = true;
-
+    [SerializeField]
     protected float m_FuseDistance;
     private void Awake()
     {
+        m_Velocity = Velocity;
+        m_ExpirationSeconds = ExpirationSeconds;
+        m_DistanceLifeSpan = DistanceLifeSpan;
         m_FuseDistance = FuseDistance;
     }
 
@@ -93,14 +96,15 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
 
     public override void OnDestruction()
     {
-
+        //jank fix for didDestruct screwing things up
         if (didDestruct) return;
 
         didDestruct = true;
 
+        gameObject.SetActive(false);
+
         for(int i = 0; i < SubProjectiles; i++) 
         {
-            
 
             Projectile projectile = Pooler.Instance.GetPooledGameObject(PooledObjectType.Shrapnel)?.GetComponent<Projectile>() ?? SubProjectileWeapon.InstantiateProjectileHere(SubProjectileWeapon.ToInstantiate);
 
@@ -111,14 +115,19 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
                 projectile.transform.rotation = dir;
                 projectile.AllegianceInfo = projectile.gameObject.AddComponent<Fac_Independent>();
                 projectile.SpriteRenderer.color = projectile.AllegianceInfo.FactionColor;
-                projectile.transform.position = transform.position; 
+                projectile.transform.position = transform.position;
+                projectile.prevPosition = transform.position;
             } 
             else
             {
                 projectile.AllegianceInfo = projectile.gameObject.AddComponent<Fac_Independent>();
                 projectile.SpriteRenderer.color = projectile.AllegianceInfo.FactionColor;
                 projectile.transform.position = transform.position;
+                projectile.prevPosition = transform.position;
             }
+
+            //projectile.gameObject.SetActive(true);
+
         }
 
         Pooler.Instance.PoolGameObject(PoolableGameObjectLink);
@@ -132,7 +141,7 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnPool()
     {
-        DistanceLifespan = m_DistanceLifeSpan;
+        DistanceLifeSpan = m_DistanceLifeSpan;
         ExpirationSeconds = m_ExpirationSeconds;
         FuseDistance = m_FuseDistance;
         Destroy(AllegianceInfo);
