@@ -23,12 +23,12 @@ public class Wep_Minion : Weapon
                     if (OnlyFireWithinRange && Vector2.Distance(transform.position, target.transform.position) <= Range)
                     {
                         Projectile projectile = Pooler.Instance.GetPooledGameObject(PooledObjectType.MinionProjectile)?.GetComponent<Projectile>() ?? InstantiateProjectileHere(ToInstantiate);
-                        PointProjectileTowardsTargetAt(projectile.gameObject, transform, target, this);
+                        PointProjectileTowardsTargetAtAndSetParent(projectile.gameObject, PEntity, target, transform, this);
                         goto EndAndInvokeCooldown;
                     }
                     //this will only be executed if OnlyFireWithinRange is false
                     Projectile projectile_ = Pooler.Instance.GetPooledGameObject(PooledObjectType.MinionProjectile)?.GetComponent<Projectile>() ?? InstantiateProjectileHere(ToInstantiate);
-                    PointProjectileTowardsTargetAt(projectile_.gameObject, transform, target, this);
+                    PointProjectileTowardsTargetAtAndSetParent(projectile_.gameObject, PEntity, target, transform, this);
 
                     EndAndInvokeCooldown:
                     shotsLeft--;

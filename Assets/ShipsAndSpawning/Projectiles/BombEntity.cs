@@ -13,8 +13,8 @@ public class BombEntity : Entity
 
         didDestruct = true;
 
-        this.Proj_Bomb.OnDestruction();
-        Destroy(gameObject);
+        Proj_Bomb.OnDestruction();
+        
     }
 
 }

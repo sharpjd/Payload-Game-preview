@@ -9,6 +9,11 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
     public Entity MothershipEntity;
     public PoolableGameObjectLink PoolableGameObjectLink { get; set; }
 
+    public override void PostStart()
+    {
+        PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
+    }
+
     public IOnPoolAndRetrieve OnPool()
     {
         return this;

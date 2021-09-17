@@ -350,9 +350,12 @@ public class Weapon : MonoBehaviour
         return projectileObject;
     }
 
-    public Projectile PointProjectileTowardsTargetAt(GameObject thingToManipulate, Transform transform, Entity targetEntity, Weapon callerForShotPrediction, bool pointToTarget = true, bool predictPosition = true)
+    public Projectile PointProjectileTowardsTargetAtAndSetParent(GameObject thingToManipulate, Entity parentEntity, Entity targetEntity, Transform transform, Weapon callerForShotPrediction, bool pointToTarget = true, bool predictPosition = true)
     {
         Projectile projectileObject = thingToManipulate.GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException();
+
+        projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(PEntity.AllegianceInfo.GetType());
+        projectileObject.PEntity = parentEntity;
 
         projectileObject.transform.position = transform.position;
         projectileObject.prevPosition = transform.position;

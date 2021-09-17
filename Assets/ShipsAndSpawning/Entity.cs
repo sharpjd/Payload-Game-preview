@@ -57,9 +57,7 @@ public class Entity : MonoBehaviour
         {
             if (_SpriteRenderer == null)
             {
-                Debug.LogError("Entity _SpriteRenderer should never be null; it is assigned Fac_Independent by default in Awake()." +
-                    " Check if it is ever assigned to by something (null assignments to this are also exceptions)", this);
-                return _SpriteRenderer;
+                return GetComponent<SpriteRenderer>();
             }
             return _SpriteRenderer;
         }

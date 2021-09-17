@@ -109,7 +109,7 @@ MonoBehaviour:
   trackInRadar: 1
   makeChildrenSameAllegiance: 1
   MovementAI: {fileID: 8711593493770931854}
-  HitpointHandler: {fileID: 0}
+  HitpointHandler: {fileID: 4114685883814690977}
   DeltaVelocity: {x: 0, y: 0}
   Selectable: 1
   OnlyTargetAllies: 0
@@ -214,6 +214,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c695d4b85b7060347b88882cdc155da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnlyFireWithinRange: 1
+  Range: 0
+  FireRateSecs: 1
+  MagazineSizeMax: 1
+  ReloadTimeSecs: 3
+  _ToInstantiate: {fileID: 1234693168582235245, guid: 15ee90db8222e614f9cef02a209a4e84, type: 3}
+  _ParentEntity: {fileID: 8711593493770931853}
+  _AttachedRadar: {fileID: 8711593493770931852}
+  shotsLeft: 0
+  reloading: 0
+  onCoolDown: 0
 --- !u!114 &2566755250850323828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +243,7 @@ MonoBehaviour:
   _target: {fileID: 0}
   _ParentEntity: {fileID: 8711593493770931853}
   _ParentRadar: {fileID: 8711593493770931852}
-  Weapon: {fileID: 0}
+  Weapon: {fileID: 3428615973120912546}
   AlternativeTarget: {fileID: 0}
 --- !u!114 &4114685883814690977
 MonoBehaviour:
@@ -250,7 +261,7 @@ MonoBehaviour:
   Hitpoints: 200
   DoRegeneration: 0
   RegenPerSecond: 3
-  PEntity: {fileID: 0}
+  PEntity: {fileID: 8711593493770931853}
 --- !u!50 &610953465226914602
 Rigidbody2D:
   serializedVersion: 4
