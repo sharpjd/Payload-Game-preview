@@ -35,6 +35,8 @@ public class MinionSpawner : AIModule
 
                 instantiatedThingEntity.AllegianceInfo = (AllegianceInfo)instantiatedThingEntity.gameObject.AddComponent(PEntity.AllegianceInfo.GetType());
 
+                instantiatedThingEntity.SpriteRenderer.color = instantiatedThingEntity.AllegianceInfo.FactionColor;
+
                 instantiatedThingEntity.MothershipEntity = PEntity;
 
                 instantiatedThingEntity.transform.position = transform.position;
