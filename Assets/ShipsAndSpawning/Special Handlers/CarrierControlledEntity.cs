@@ -22,12 +22,15 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
         OnDehighlight();
         HitpointHandler.Hitpoints = HitpointHandler.MaxHitpoints;
         Destroy(AllegianceInfo);
-        didDestruct = false;
         return this;
     }
 
     public IOnPoolAndRetrieve OnRetrieve()
     {
+        IsDead = false;
+        didDestruct = false;
+        DeltaVelocity = new Vector2();
+        //FrameBasedExecutor.Instance.ExecuteNextFrame(new System.Action(Start));
         return this;
     }
 

@@ -29,6 +29,8 @@ public class Entity : MonoBehaviour
     public bool PlayDestructionAnimationOnDeath = true;
     public GameObject DestructionPrefab;
 
+    public bool CountTowardsTeamCount = true;
+
     public Vector2 pushQueue;
     public AllegianceInfo AllegianceInfo
     {

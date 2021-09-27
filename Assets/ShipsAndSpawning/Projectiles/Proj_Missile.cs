@@ -125,6 +125,7 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnRetrieve()
     {
+        Destroy(AllegianceInfo);
         return this;
     }
 

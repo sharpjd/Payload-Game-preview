@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class LevelHandler : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class LevelHandler : MonoBehaviour
     public void CheckForDefeat()
     {
 
-        int count = Targets.GetAllTargetsOfFactionRemoveInvalids(GameState.Instance.PlayerAllegiance.Faction, ShipType.Missile).Count;
+        int count = Targets.GetAllTargetsOfFactionRemoveInvalids(GameState.Instance.PlayerAllegiance.Faction, ShipType.Missile).Where(a => a.CountTowardsTeamCount).ToList().Count;
 
         if (count == 0)
             ChangeLevelState(LevelState.Defeat);

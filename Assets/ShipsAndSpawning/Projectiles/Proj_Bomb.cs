@@ -60,7 +60,7 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
         FuseDistance -= (transform.right * Velocity).magnitude * Time.fixedDeltaTime;
         transform.position += transform.right * Velocity * Time.fixedDeltaTime;
 
-        if(FuseDistance <= 0f)
+        if(FuseDistance - FuseDistanceOffset <= 0f)
         {
             OnDestruction();
         }
@@ -136,6 +136,8 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnRetrieve()
     {
+        didDestruct = false;
+        Destroy(AllegianceInfo);
         return this;
     }
 
@@ -144,11 +146,16 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
         DistanceLifeSpan = m_DistanceLifeSpan;
         ExpirationSeconds = m_ExpirationSeconds;
         FuseDistance = m_FuseDistance;
-        Destroy(AllegianceInfo);
+
+        Component[] allegianceInfos = GetComponents(typeof(AllegianceInfo));
+
+        for (int i = 0; i < allegianceInfos.Length; i++)
+            Destroy(allegianceInfos[i]);
+
         DeltaVelocity = new Vector2();
-        didDestruct = false;
 
         gameObject.SetActive(false);
+
         return this;
     }
 }

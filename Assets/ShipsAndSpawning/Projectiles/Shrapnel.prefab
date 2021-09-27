@@ -101,7 +101,7 @@ MonoBehaviour:
   HitPrediction: 1
   Velocity: 25
   Damage: 22
-  DistanceLifeSpan: 12
+  DistanceLifeSpan: 10
   DoExpire: 1
   ExpirationSeconds: 2
   TargetEntity: {fileID: 0}

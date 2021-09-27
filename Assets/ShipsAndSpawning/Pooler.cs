@@ -3,6 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Pooling is very difficult to implement in general. Objects can extend IOnPoolAndRetrieve to make the process easier, but
+ * in general, recycling GameObjects can be a design pattern nightmare with filled with race conditions and checks that
+ * need to happen. Use sparingly — so far, the only things that have been pooled.
+ * 
+ * Note: GameObjects to be pooled require a PoolableGameObjectLink to function.
+ * 
+ * More info in IOnPoolAndRetrieve
+ */
+
 public class Pooler : MonoBehaviour
 {
 

@@ -66,17 +66,15 @@ public class Targets : MonoBehaviour
     private void ClearNullsFromGlobalList()
     {
 
-        int cleaned = 0;
-
         for (int i = 0; i < factionTargetLists.Count; i++)
         {
-
             for (int j = 0; j < factionTargetLists[i].targets.Count; j++)
-            { 
-                if (!IsValidTarget(factionTargetLists[i].targets[j]))
+            {
+                Entity entity = factionTargetLists[i].targets[j];
+
+                if (entity == null || entity.gameObject == null)
                 {
                     factionTargetLists[i].targets.RemoveAt(j);
-                    cleaned++;
                     j--;
                 }
             }
@@ -270,7 +268,6 @@ public class Targets : MonoBehaviour
         return true;
     }
 
-
     public static FactionTargetList[] GetAllFactionTargetLists()
     {
         return factionTargetLists.ToArray();
@@ -279,6 +276,7 @@ public class Targets : MonoBehaviour
     public class FactionTargetList
     {
         public readonly Factions faction;
+        [SerializeField]
         public List<Entity> targets = new List<Entity>();
 
         public FactionTargetList(Factions faction)

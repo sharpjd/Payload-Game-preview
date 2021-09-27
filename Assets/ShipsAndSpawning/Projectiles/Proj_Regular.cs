@@ -57,6 +57,7 @@ public class Proj_Regular : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnRetrieve()
     {
+        Destroy(AllegianceInfo);
         return this;
     }
 

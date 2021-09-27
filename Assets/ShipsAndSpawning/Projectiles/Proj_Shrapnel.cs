@@ -12,6 +12,7 @@ public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
 
     private void Awake()
     {
+        Physics.IgnoreLayerCollision(6, 6);
         PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
         m_Velocity = Velocity;
         m_DistanceLifeSpan = DistanceLifeSpan;
@@ -64,6 +65,7 @@ public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnRetrieve()
     {
+        Destroy(AllegianceInfo);
         gameObject.SetActive(true);
         return this;
     }
@@ -77,6 +79,8 @@ public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
         m_DistanceLifeSpan = DistanceLifeSpan;
         Destroy(AllegianceInfo);
         DeltaVelocity = new Vector2();
+
+        gameObject.SetActive(false);
 
         return this;
     }

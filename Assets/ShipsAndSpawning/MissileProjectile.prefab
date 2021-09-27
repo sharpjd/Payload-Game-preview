@@ -113,6 +113,9 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 8519500587376938171}
   InstantiatedFromInstantiater: 0
   DeltaVelocity: {x: 0, y: 0}
+  m_Velocity: 0
+  m_DistanceLifeSpan: 0
+  m_ExpirationSeconds: 0
   prevPosition: {x: 0, y: 0}
   CurrentVelocity: 1
   AccelerationPerSecond: 5
@@ -142,6 +145,7 @@ MonoBehaviour:
   OnlyTargetAllies: 0
   PlayDestructionAnimationOnDeath: 0
   DestructionPrefab: {fileID: 0}
+  CountTowardsTeamCount: 0
   pushQueue: {x: 0, y: 0}
   _AllegianceInfo: {fileID: 0}
   SelectionCircleY: 1
