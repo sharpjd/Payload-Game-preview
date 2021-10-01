@@ -265,7 +265,7 @@ public class Weapon : MonoBehaviour
     public Projectile InstantiateProjectileAtParent(GameObject thingToInstantiate, Entity parentEntity)
     {
         Projectile projectileObject = Instantiate(thingToInstantiate).GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException(); ;
-        projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(parentEntity.AllegianceInfo.GetType());
+        projectileObject.AllegianceInfo = parentEntity.AllegianceInfo.Clone(projectileObject.gameObject);
         projectileObject.PEntity = parentEntity;
 
         projectileObject.transform.position = parentEntity.transform.position;
@@ -281,7 +281,7 @@ public class Weapon : MonoBehaviour
     public Projectile InstantiateProjectileAtParentWithTarget(GameObject thingToInstantiate, Entity parentEntity, Entity targetEntity)
     {
         Projectile projectileObject = Instantiate(thingToInstantiate).GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException(); ;
-        projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(parentEntity.AllegianceInfo.GetType());
+        projectileObject.AllegianceInfo = parentEntity.AllegianceInfo.Clone(projectileObject.gameObject);
         projectileObject.PEntity = parentEntity;
 
         projectileObject.transform.position = parentEntity.transform.position;
@@ -299,7 +299,7 @@ public class Weapon : MonoBehaviour
     public Projectile InstantiateProjectileTowardsTargetWithParent(GameObject thingToInstantiate, Entity parentEntity, Entity targetEntity, Weapon callerForShotPrediction, bool pointToTarget = true, bool predictPosition = true)
     {
         Projectile projectileObject = Instantiate(thingToInstantiate).GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException();
-        projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(parentEntity.AllegianceInfo.GetType());
+        projectileObject.AllegianceInfo = parentEntity.AllegianceInfo.Clone(projectileObject.gameObject);
         projectileObject.PEntity = parentEntity;
 
         projectileObject.transform.position = parentEntity.transform.position;
@@ -354,7 +354,7 @@ public class Weapon : MonoBehaviour
     {
         Projectile projectileObject = thingToManipulate.GetComponent<Projectile>() ?? throw new PrefabNoProjectileComponentException();
 
-        projectileObject.AllegianceInfo = (AllegianceInfo)projectileObject.gameObject.AddComponent(PEntity.AllegianceInfo.GetType());
+        projectileObject.AllegianceInfo = parentEntity.AllegianceInfo.Clone(projectileObject.gameObject);
         projectileObject.SpriteRenderer.color = projectileObject.AllegianceInfo.FactionColor;
         projectileObject.PEntity = parentEntity;
 

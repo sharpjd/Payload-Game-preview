@@ -30,7 +30,7 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
         IsDead = false;
         didDestruct = false;
         DeltaVelocity = new Vector2();
-        //FrameBasedExecutor.Instance.ExecuteNextFrame(new System.Action(Start));
+        FrameBasedExecutor.Instance.ExecuteNextFrame(new System.Action(Start));
         return this;
     }
 

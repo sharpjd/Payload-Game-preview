@@ -5,7 +5,28 @@ using UnityEngine;
 public class WepAI_PrioritizeTargetButFireAtAnythingInRange : AIWeaponController
 {
 
-    public Entity AlternativeTarget;
+    public Entity AlternativeTarget
+    {
+        get
+        {
+            if (!Targets.IsValidTarget(_alternativeTarget))
+            {
+                TargetingOverriden = false;
+                return null;
+            }
+            return _alternativeTarget;
+        }
+        set
+        {
+            if (!TargetingOverriden && !PreventTargetOverride)
+                _alternativeTarget = value;
+        }
+    }
+    [SerializeField]
+    private Entity _alternativeTarget;
+
+
+
     [Tooltip("Getting a target is expensive. This is how often it can check for alternative targets")]
     float SecondsBeforeCheckingAlternativeTarget = 1f;
 
@@ -17,14 +38,14 @@ public class WepAI_PrioritizeTargetButFireAtAnythingInRange : AIWeaponController
             Weapon.TryFire(Target);
         } else
         {
-            if (AlternativeTarget != null && Weapon.IsInRange(AlternativeTarget))
+            if (Targets.IsValidTarget(AlternativeTarget) && Weapon.IsInRange(AlternativeTarget))
             {
                 Weapon.TryFire(AlternativeTarget);
             }
             else
             {
                 TryCheckForAlternativeTarget();
-                if (AlternativeTarget != null)
+                if (Targets.IsValidTarget(AlternativeTarget))
                 {
                     Weapon.TryFire(AlternativeTarget);
                 }

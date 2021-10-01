@@ -46,6 +46,12 @@ public abstract class AllegianceInfo : MonoBehaviour
         }
         return false;
     }
+
+    public AllegianceInfo Clone(GameObject self)
+    {
+        return (AllegianceInfo)self.AddComponent(this.GetType());
+    }
+
 }
 
 public enum Factions
