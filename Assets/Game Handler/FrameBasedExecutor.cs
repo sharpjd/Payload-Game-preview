@@ -45,7 +45,7 @@ public class FrameBasedExecutor : MonoBehaviour
         if(!surpressWarningForMultiFrameDelay && Time.frameCount - executionFrame > 1)
         {
             Debug.LogError("Warning: there should be very few circumstances you need a method to execute after more than" +
-                " one frame, pass true to surpressWarningForMultiFrameDelay as a parameter to surpress error");
+                " one frame (dirty code?), pass true to surpressWarningForMultiFrameDelay as a parameter to surpress error");
         }
 
         FrameAction frameAction = new FrameAction(action, executionFrame);
