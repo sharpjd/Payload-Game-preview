@@ -17,10 +17,9 @@ public class AIModule : MonoBehaviour
     {
         get
         {
-            if(!Targets.IsValidTarget(_target))
+            if(_target == null)
             {
                 TargetingOverriden = false;
-                return null;
             }
             return _target;
         }

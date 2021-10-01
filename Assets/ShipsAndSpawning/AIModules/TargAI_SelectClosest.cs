@@ -20,19 +20,19 @@ public class TargAI_SelectClosest : AITargetAcquisitor
     {
         //Debug.Log((Target == null) + ", " + checkedForTargetBeforeRefreshTime);
 
-        if(Targets.IsValidTarget(Target))
+        if(Target != null)
         {
             checkedForTargetBeforeRefreshTime = false;
         }
 
-        if(!Targets.IsValidTarget(Target) && !checkedForTargetBeforeRefreshTime)
+        if(Target == null && !checkedForTargetBeforeRefreshTime)
         {
             checkedForTargetBeforeRefreshTime = true;
             LastUpdateTime = Time.time;
             SetAllTargets(Targets.GetClosestTarget(PRadar.transform.position, PRadar.ParentEntity, ShipTypesToIgnore));
         }
 
-        if (DoAutoAcquireTargets && Time.time - LastUpdateTime > AutoAcquireDelaySecs)
+        if (DoAutoAcquireTargets /*&& Target == null*/ && Time.time - LastUpdateTime > AutoAcquireDelaySecs)
         {
             checkedForTargetBeforeRefreshTime = false;
             LastUpdateTime = Time.time;
