@@ -16,7 +16,7 @@ public class BombEntity : Entity, IOnPoolAndRetrieve
         didDestruct = true;
 
         Proj_Bomb.OnDestruction();
-        
+
     }
 
     public IOnPoolAndRetrieve OnPool()
@@ -29,12 +29,17 @@ public class BombEntity : Entity, IOnPoolAndRetrieve
         Destroy(AllegianceInfo);
         didDestruct = false;
 
+        //Targets.RemoveEntityFromTargets(this);
+
         return this;
     }
 
     public IOnPoolAndRetrieve OnRetrieve()
     {
         //FrameBasedExecutor.Instance.ExecuteNextFrame(new System.Action(Start));
+
+        //TODO: Bomb Entities potentially need to register themselves as targets
+
         IsDead = false;
         return this;
     }

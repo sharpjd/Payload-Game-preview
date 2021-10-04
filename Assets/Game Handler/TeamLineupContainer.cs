@@ -25,7 +25,7 @@ public class TeamLineupContainer : MonoBehaviour
 
         
 
-        List<Entity> teamEntities = Targets.GetAllTargetsOfFaction(AllegianceInfo.Faction, ShipType.Placeholder);
+        List<Entity> teamEntities = Targets.GetAllTargetsOfFaction(AllegianceInfo.Faction, new List<ShipType>(new ShipType[] { ShipType.Placeholder }));
 
         foreach (UIShipSpriteContainer uIShipSprite in LineupUIShipSpriteContainers)
         {

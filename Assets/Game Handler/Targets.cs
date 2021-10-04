@@ -10,35 +10,30 @@ public class Targets : MonoBehaviour
 {
     //Do not call this directly
     private static List<FactionTargetList> factionTargetLists = new List<FactionTargetList>();
-
     public static int FactionListCount { get => factionTargetLists.Count; }
 
     public float cleanNullIntervalSeconds = 5f;
     //public static float cleanNullIntervalSecondsTimeLeft;
 
+    public static Targets Instance;
+
+
     private void Awake()
     {
+        Instance = this;
         Debug.Log("Global targets handler initialized");
     }
 
     private void Start()
     {
-        Debug.Log("Global targets handler started");
         InvokeRepeating("ClearNullsFromGlobalList", 0, cleanNullIntervalSeconds);
-    }
-
-    private void Update()
-    {
-
-        
-
     }
 
     public static int GetCountOfTargets()
     {
         int targetsTotal = 0;
 
-        foreach(FactionTargetList factionTargetList_ in factionTargetLists)
+        foreach (FactionTargetList factionTargetList_ in factionTargetLists)
         {
             targetsTotal += factionTargetList_.targets.Count;
         }
@@ -52,7 +47,7 @@ public class Targets : MonoBehaviour
 
         foreach (FactionTargetList factionTargetList_ in factionTargetLists)
         {
-            foreach(Entity entity in factionTargetList_.targets)
+            foreach (Entity entity in factionTargetList_.targets)
             {
                 if (IsValidTarget(entity) && entity.AllegianceInfo.ID != ignoreID)
                     targetsTotal++;
@@ -68,14 +63,13 @@ public class Targets : MonoBehaviour
 
         for (int i = 0; i < factionTargetLists.Count; i++)
         {
-            for (int j = 0; j < factionTargetLists[i].targets.Count; j++)
+            for (int j = factionTargetLists[i].targets.Count - 1; j >= 0; j--)
             {
                 Entity entity = factionTargetLists[i].targets[j];
 
                 if (entity == null || entity.gameObject == null)
                 {
                     factionTargetLists[i].targets.RemoveAt(j);
-                    j--;
                 }
             }
         }
@@ -116,9 +110,11 @@ public class Targets : MonoBehaviour
             }
         }
 
-        FactionTargetList newFactionTargetList = new FactionTargetList(self.AllegianceInfo.Faction);
-        newFactionTargetList.targets.Add(self);
+        FactionTargetList newFactionTargetList = Instance.gameObject.AddComponent<FactionTargetList>();
+        newFactionTargetList.faction = ((AllegianceInfo)Instance.gameObject.AddComponent(self.AllegianceInfo.GetType())).Faction;
+        Debug.Log("bruh " + newFactionTargetList);//WHY DO THESE THROW NULLREFERENCES???
         factionTargetLists.Add(newFactionTargetList);
+        newFactionTargetList.targets.Add(self);
     }
 
 
@@ -126,8 +122,8 @@ public class Targets : MonoBehaviour
     {
         Entity closestTarget = null;
 
-        for(int i = 0; i < self.AllegianceInfo.TargetFactions.Length; i++)
-        { 
+        for (int i = 0; i < self.AllegianceInfo.TargetFactions.Length; i++)
+        {
             float currentClosestDistance = float.MaxValue;
             List<Entity> targets = GetFactionTargetList(self.AllegianceInfo.TargetFactions[i])?.targets;
 
@@ -229,13 +225,13 @@ public class Targets : MonoBehaviour
 
     }
 
-    public static List<Entity> GetAllTargetsOfFaction(Factions faction, ShipType shipTypeToExclude)
+    public static List<Entity> GetAllTargetsOfFaction(Factions faction, List<ShipType> shipTypesToExclude)
     {
-        List<Entity> entities = GetFactionTargetList(faction).targets;
+        List<Entity> entities = new List<Entity>(GetFactionTargetList(faction).targets);
 
         for (int i = entities.Count - 1; i >= 0; i--)
         {
-            if(entities[i].ShipType == shipTypeToExclude)
+            if (shipTypesToExclude.Contains(entities[i].ShipType))
             {
                 entities.Remove(entities[i]);
             }
@@ -245,15 +241,15 @@ public class Targets : MonoBehaviour
 
     }
 
-    public static List<Entity> GetAllTargetsOfFactionRemoveInvalids(Factions faction, ShipType shipTypeToExclude)
+    public static List<Entity> GetAllTargetsOfFactionRemoveInvalidsAndNonCounts(Factions faction, List<ShipType> shipTypesToExclude)
     {
-        List<Entity> entities = GetFactionTargetList(faction).targets;
+        List<Entity> entities = new List<Entity>(GetFactionTargetList(faction).targets);
 
         for (int i = entities.Count - 1; i >= 0; i--)
         {
-            if (entities[i].ShipType == shipTypeToExclude || !IsValidTarget(entities[i]))
+            if (shipTypesToExclude.Contains(entities[i].ShipType) || !IsValidTarget(entities[i]) || !entities[i].CountTowardsTeamCount)
             {
-                entities.Remove(entities[i]);
+                entities.RemoveAt(i);
             }
         }
 
@@ -273,16 +269,10 @@ public class Targets : MonoBehaviour
         return factionTargetLists.ToArray();
     }
 
-    public class FactionTargetList
+    public static bool RemoveEntityFromTargets(Entity entity)
     {
-        public readonly Factions faction;
-        [SerializeField]
-        public List<Entity> targets = new List<Entity>();
-
-        public FactionTargetList(Factions faction)
-        {
-            this.faction = faction;
-        }
+        //return GetFactionTargetList(entity.AllegianceInfo.Faction).targets.RemoveAll(a => a.GetInstanceID() == entity.GetInstanceID()) > 0; 
+        return GetFactionTargetList(entity.AllegianceInfo.Faction).targets.Remove(entity);
     }
 
     public class InvalidTargetRegistrant : Exception

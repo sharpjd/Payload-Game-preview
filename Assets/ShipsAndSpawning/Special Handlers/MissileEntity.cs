@@ -23,6 +23,8 @@ public class MissileEntity : Entity, IOnPoolAndRetrieve
         Destroy(AllegianceInfo);
         didDestruct = false;
 
+        //Targets.RemoveEntityFromTargets(this);
+
         return this;
     }
 

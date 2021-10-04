@@ -22,6 +22,9 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
         OnDehighlight();
         HitpointHandler.Hitpoints = HitpointHandler.MaxHitpoints;
         Destroy(AllegianceInfo);
+
+        Targets.RemoveEntityFromTargets(this);
+
         return this;
     }
 
@@ -36,7 +39,7 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
 
     public void Update()
     {
-        if(MothershipEntity == null || MothershipEntity.gameObject == null)
+        if (MothershipEntity == null || MothershipEntity.gameObject == null)
         {
             OnDestruction();
         }

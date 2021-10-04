@@ -20,12 +20,12 @@ public class TargAI_SelectClosest : AITargetAcquisitor
     {
         //Debug.Log((Target == null) + ", " + checkedForTargetBeforeRefreshTime);
 
-        if(Target != null)
+        if (Target != null)
         {
             checkedForTargetBeforeRefreshTime = false;
         }
 
-        if(Target == null && !checkedForTargetBeforeRefreshTime)
+        if (Target == null && !checkedForTargetBeforeRefreshTime)
         {
             checkedForTargetBeforeRefreshTime = true;
             LastUpdateTime = Time.time;

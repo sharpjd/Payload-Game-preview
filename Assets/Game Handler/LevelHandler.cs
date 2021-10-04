@@ -66,7 +66,12 @@ public class LevelHandler : MonoBehaviour
     public void CheckForDefeat()
     {
 
-        int count = Targets.GetAllTargetsOfFactionRemoveInvalids(GameState.Instance.PlayerAllegiance.Faction, ShipType.Missile).Where(a => a.CountTowardsTeamCount).ToList().Count;
+        int count = Targets.GetAllTargetsOfFactionRemoveInvalidsAndNonCounts
+            (
+            GameState.Instance.PlayerAllegiance.Faction,
+            new List<ShipType>(new ShipType[] { ShipType.Missile }
+            )
+                ).Where(a => a.CountTowardsTeamCount).ToList().Count;
 
         if (count == 0)
             ChangeLevelState(LevelState.Defeat);
@@ -77,26 +82,34 @@ public class LevelHandler : MonoBehaviour
     public void CheckForVictory()
     {
 
-        List<Targets.FactionTargetList> factionTargetLists = new List<Targets.FactionTargetList>(Targets.GetAllFactionTargetLists());
+        List<FactionTargetList> factionTargetLists = new List<FactionTargetList>(Targets.GetAllFactionTargetLists());
 
         //remove the player's faction from this list 
-        for(int i = factionTargetLists.Count - 1; i >= 0; i--)
+        for (int i = factionTargetLists.Count - 1; i >= 0; i--)
         {
-            if(factionTargetLists[i].faction == GameState.Instance.PlayerAllegiance.Faction)
+            if (factionTargetLists[i].faction == GameState.Instance.PlayerAllegiance.Faction)
             {
-                factionTargetLists.Remove(factionTargetLists[i]);
+                factionTargetLists.RemoveAt(i);
             }
         }
 
         //iterate through all available entities; if any valid target is found, return
         for (int i = factionTargetLists.Count - 1; i >= 0; i--)
         {
-            int count = Targets.GetAllTargetsOfFactionRemoveInvalids(factionTargetLists[i].faction, ShipType.Missile).Count;
+
+            int count = Targets.GetAllTargetsOfFactionRemoveInvalidsAndNonCounts
+            (
+            factionTargetLists[i].faction,
+            new List<ShipType>(new ShipType[] { ShipType.Missile }
+            )
+                ).Where(a => a.CountTowardsTeamCount).ToList().Count;
+
             if (count > 0) return;
         }
 
         ChangeLevelState(LevelState.Victory);
     }
+
 
 
     public void ChangeLevelState(LevelState state)

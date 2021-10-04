@@ -12,23 +12,24 @@ public class WepAI_PrioritizeTargetButFireAtAnythingInRange : AIWeaponController
     public void Update()
     {
 
-        if(Target != null && Weapon.IsInRange(Target))
+        if (Targets.IsValidTarget(Target) && Weapon.IsInRange(Target))
         {
             Weapon.TryFire(Target);
-        } else
+        }
+        else
         {
-            if (AlternativeTarget != null && Weapon.IsInRange(AlternativeTarget))
+            if (Targets.IsValidTarget(AlternativeTarget) && Weapon.IsInRange(AlternativeTarget))
             {
                 Weapon.TryFire(AlternativeTarget);
             }
             else
             {
                 TryCheckForAlternativeTarget();
-                if (AlternativeTarget != null)
+                if (Targets.IsValidTarget(AlternativeTarget))
                 {
                     Weapon.TryFire(AlternativeTarget);
                 }
-            }  
+            }
         }
     }
 
@@ -40,7 +41,7 @@ public class WepAI_PrioritizeTargetButFireAtAnythingInRange : AIWeaponController
     float LastTimeChecked;
     public void TryCheckForAlternativeTarget()
     {
-        if(Time.time - LastTimeChecked > SecondsBeforeCheckingAlternativeTarget)
+        if (Time.time - LastTimeChecked > SecondsBeforeCheckingAlternativeTarget)
         {
             LastTimeChecked = Time.time;
             AlternativeTarget = Targets.GetClosestTargetInRange(gameObject.transform.position, PEntity, Weapon.Range, ShipTypesToIgnore);

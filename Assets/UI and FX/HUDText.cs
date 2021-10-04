@@ -73,8 +73,8 @@ public class HUDText : MonoBehaviour
 
                 lastUpdateTime = Time.time;
 
-                int countA = Targets.GetAllTargetsOfFactionRemoveInvalids(GameState.Instance.PlayerAllegiance.Faction, ShipType.Missile).Count;
-                int countB = Targets.GetAllTargetsOfFactionRemoveInvalids(EnemyFaction.Faction, ShipType.Missile).Count;
+                int countA = Targets.GetAllTargetsOfFactionRemoveInvalidsAndNonCounts(GameState.Instance.PlayerAllegiance.Faction, new List<ShipType>(new ShipType[] { ShipType.Missile, ShipType.Bomb })).Count;
+                int countB = Targets.GetAllTargetsOfFactionRemoveInvalidsAndNonCounts(EnemyFaction.Faction, new List<ShipType>(new ShipType[] { ShipType.Missile, ShipType.Bomb })).Count;
 
                 if(countA == countB)
                     BottomDisplayText.SetText(countA + "  :  " + countB);
