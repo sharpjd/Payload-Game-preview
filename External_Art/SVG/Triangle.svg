@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="409.95001mm"
+   height="473.36948mm"
+   viewBox="0 0 409.95001 473.36948"
+   version="1.1"
+   id="svg1594"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="Triangle.svg"
+   inkscape:export-filename="C:\Users\dongb\Desktop\Jason Home Folder\Personal\Unity Projects\Tetris with Physics\MiniRTS\Art\PNG\Triangle.png"
+   inkscape:export-xdpi="27.472832"
+   inkscape:export-ydpi="27.472832">
+  <defs
+     id="defs1588" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="857.19891"
+     inkscape:cy="1269.4874"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1267"
+     inkscape:window-height="1085"
+     inkscape:window-x="251"
+     inkscape:window-y="15"
+     inkscape:window-maximized="0"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-page="true"
+     inkscape:snap-center="true"
+     inkscape:snap-midpoints="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata1591">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(136.65,108.68474)">
+    <path
+       sodipodi:type="star"
+       style="fill:none;stroke:#ffffff;stroke-width:17.3;stroke-linecap:square;stroke-miterlimit:5.1;stroke-opacity:1"
+       id="path2179"
+       sodipodi:sides="3"
+       sodipodi:cx="0"
+       sodipodi:cy="128"
+       sodipodi:r1="256"
+       sodipodi:r2="128"
+       sodipodi:arg1="0"
+       sodipodi:arg2="1.0471976"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 256,128 63.999995,238.85125 -128,349.7025 l 0,-221.70251 0,-221.702493 192.000005,110.851254 z"
+       inkscape:transform-center-x="-63.999999"
+       inkscape:transform-center-y="-1.6125983e-06" />
+  </g>
+</svg>
