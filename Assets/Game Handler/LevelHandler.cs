@@ -46,14 +46,8 @@ public class LevelHandler : MonoBehaviour
             {
                 teamShipPlacer.StartPlacing(PositionalVariance);
             }
-            ChangeLevelState(LevelState.Preparing);
+            ChangeLevelState(LevelState.Started);
         }
-
-        if(LevelState == LevelState.Preparing)
-        {
-
-        }
-
 
     }
 

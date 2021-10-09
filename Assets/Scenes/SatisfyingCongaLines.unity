@@ -730,6 +730,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialZoom: 20
   TargetZoom: 20
+  InitialZoom: 70
+  TargetZoom: 70
   ZoomScrollChange: 0.25
   ZoomScrollChangeDivisor: 1.5
   ZoomVelocityDivisor: 0.5
