@@ -728,8 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823a9cbec3871364f95728a3dd79e6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialZoom: 20
-  TargetZoom: 20
   InitialZoom: 70
   TargetZoom: 70
   ZoomScrollChange: 0.25
