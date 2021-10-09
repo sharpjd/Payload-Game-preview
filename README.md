@@ -18,3 +18,7 @@ Some preview media:
 * You should now be ready to open the project from the list of projects
 
 * Extra note: Project uses Unity2D 2020.3.16f1
+
+## Attributions:
+* *G-Type* by Gomarice Font: https://www.fontspace.com/g-type-font-f24727
+* *DATA WING* by Van Dogt (for artstyle inspiration): https://play.google.com/store/apps/details?id=com.DanVogt.DATAWING
