@@ -8,7 +8,7 @@ Some preview media:
 ![Banner](https://github.com/BluSharpie/Payload-Game-preview/blob/main/PreviewMedia/2021-08-29%2005_43_42-Window.png)
 
 # Download and Run:
-* Download latest from releases
+* Download latest from [releases](https://github.com/BluSharpie/Payload-Game-preview/releases) ([direct](https://github.com/BluSharpie/Payload-Game-preview/releases/download/demo/MiniRTS_Build_0.1.0.zip))
 * Unzip and execute Payload.exe
 
 # Importing as a Unity Project:
