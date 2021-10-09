@@ -246,7 +246,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 35927422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c5755a223469e4e806a103602d82c0, type: 3}
+  m_Script: {fileID: 11500000, guid: aa0471d97fcad96438c5079581787468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AllegianceInfo: {fileID: 35927427}
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 99787357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c5755a223469e4e806a103602d82c0, type: 3}
+  m_Script: {fileID: 11500000, guid: aa0471d97fcad96438c5079581787468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AllegianceInfo: {fileID: 99787362}
@@ -621,7 +621,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 152964599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c5755a223469e4e806a103602d82c0, type: 3}
+  m_Script: {fileID: 11500000, guid: aa0471d97fcad96438c5079581787468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AllegianceInfo: {fileID: 152964604}
@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823a9cbec3871364f95728a3dd79e6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialZoom: 20
+  InitialZoom: 70
   TargetZoom: 20
   ZoomScrollChange: 0.25
   ZoomScrollChangeDivisor: 1.5
@@ -1064,11 +1064,13 @@ GameObject:
   - component: {fileID: 775629898}
   - component: {fileID: 775629900}
   - component: {fileID: 775629904}
-  - component: {fileID: 775629905}
   - component: {fileID: 775629907}
+  - component: {fileID: 775629906}
+  - component: {fileID: 775629905}
   - component: {fileID: 775629903}
   - component: {fileID: 775629902}
   - component: {fileID: 775629899}
+  - component: {fileID: 775629909}
   - component: {fileID: 775629908}
   - component: {fileID: 775629910}
   m_Layer: 0
@@ -1091,7 +1093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoRandomGeneration: 1
-  LevelState: 1
+  LevelState: 0
   EnemyBank: 0
   FriendlyBank: 0
   TeamsToPlace:
@@ -1200,12 +1202,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 775629897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac0731bd42ab3848a90d6c1c1a47707, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fe63c9e5d23f634e9b37f75c1f0cde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamLineups:
-  - {fileID: 775629907}
-  LineupUpdateIntervalSeconds: 0.2
+  AllegianceInfo: {fileID: 775629903}
+  LineupUIShipSpriteContainers: []
+--- !u!114 &775629906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775629897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe63c9e5d23f634e9b37f75c1f0cde3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllegianceInfo: {fileID: 775629902}
+  LineupUIShipSpriteContainers: []
 --- !u!114 &775629907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,11 +1230,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 775629897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b67ce565b286542b39b29e1b6f9037, type: 3}
+  m_Script: {fileID: 11500000, guid: 548101d82001ba44aae7ce6976838ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllegianceInfo: {fileID: 775629902}
-  LineupUIShipSpriteContainers: []
+  TeamLineups:
+  - {fileID: 775629906}
+  LineupUpdateIntervalSeconds: 0.02
 --- !u!114 &775629908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,6 +1249,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyTargetAllies: 0
+--- !u!114 &775629909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775629897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168b278bd3ef97b409a145a143d1be28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIBottomDisplay: {fileID: 1625423720}
+  UIInstructions: {fileID: 139176065}
+  InstructionsText: {fileID: 0}
+  BottomDisplayText: {fileID: 0}
+  LevelHandler: {fileID: 775629898}
+  EnemyFaction: {fileID: 775629908}
+  UIScoreUpdateIntervalSeconds: 0.2
+  PreparingInstructions: 
 --- !u!114 &775629910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2476,7 +2512,7 @@ MonoBehaviour:
   MaxColumnFormationHeightCount: 3
   XGapBetweenColumns: 2
   TotalYSpace: 0
-  GenerationRarityMultiplier: 0.3
+  GenerationRarityMultiplier: 0.4
   ChanceFloor: 0
   ChanceCeiling: 0
 --- !u!1 &1333526516
@@ -2527,7 +2563,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1333526516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c5755a223469e4e806a103602d82c0, type: 3}
+  m_Script: {fileID: 11500000, guid: aa0471d97fcad96438c5079581787468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AllegianceInfo: {fileID: 1333526521}
@@ -2638,7 +2674,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1374737012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c57516f7fc7e23143b01380772dfa30a, type: 3}
+  m_Script: {fileID: 11500000, guid: ab0d8b222589ba648bbfb6dc018c0fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   UIShipSpriteContainers:
@@ -2832,7 +2868,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1435511645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c5755a223469e4e806a103602d82c0, type: 3}
+  m_Script: {fileID: 11500000, guid: aa0471d97fcad96438c5079581787468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AllegianceInfo: {fileID: 1435511650}
@@ -3160,7 +3196,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1497171366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c5755a223469e4e806a103602d82c0, type: 3}
+  m_Script: {fileID: 11500000, guid: aa0471d97fcad96438c5079581787468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AllegianceInfo: {fileID: 1497171371}
@@ -3626,7 +3662,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1514344562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4237010e39e82d42ab2c0f53bdac020, type: 3}
+  m_Script: {fileID: 11500000, guid: 1926f91c5ebfe724aaeb720fcdb469ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1514344581
@@ -4162,8 +4198,6 @@ GameObject:
   - component: {fileID: 1791778351}
   - component: {fileID: 1791778350}
   - component: {fileID: 1791778354}
-  - component: {fileID: 1791778356}
-  - component: {fileID: 1791778355}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4264,54 +4298,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1791778349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21878fb28eddfc84cbac9b931a2fd4a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 548101d82001ba44aae7ce6976838ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlacingArea:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
-  PlacingAreaHighlight: {fileID: 0}
-  _CurrentlySelectedToInstantiate: {fileID: 0}
-  AmountToPlace: 0
-  SpawnCountTextObject: {fileID: 1397115122}
-  SpawnCountTextObjectOffset: {x: 0, y: 0}
-  SpawnCountTextUpdateIntervalSeconds: 0.1
---- !u!114 &1791778355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791778349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23db7f8e2ff409b40b0e9a32a286993a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnlyTargetAllies: 0
---- !u!114 &1791778356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791778349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f810d81cb221f0243a2c95876a72ba05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIBottomDisplay: {fileID: 1625423720}
-  UIInstructions: {fileID: 139176065}
-  InstructionsText: {fileID: 0}
-  BottomDisplayText: {fileID: 0}
-  LevelHandler: {fileID: 775629898}
-  EnemyFaction: {fileID: 1791778355}
-  UIScoreUpdateIntervalSeconds: 0.2
-  PreparingInstructions: 
+  TeamLineups: []
+  LineupUpdateIntervalSeconds: 0.1
 --- !u!1 &1871154930
 GameObject:
   m_ObjectHideFlags: 0
