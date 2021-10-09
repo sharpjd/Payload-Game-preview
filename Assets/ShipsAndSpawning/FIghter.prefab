@@ -115,6 +115,7 @@ MonoBehaviour:
   OnlyTargetAllies: 0
   PlayDestructionAnimationOnDeath: 1
   DestructionPrefab: {fileID: 0}
+  CountTowardsTeamCount: 1
   pushQueue: {x: 0, y: 0}
   _AllegianceInfo: {fileID: 0}
   SelectionCircleY: 2
@@ -211,7 +212,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8711593493770931856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c695d4b85b7060347b88882cdc155da4, type: 3}
+  m_Script: {fileID: 11500000, guid: e897143e63da88a4e9955a5bccb25eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyFireWithinRange: 1
