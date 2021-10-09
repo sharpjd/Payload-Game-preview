@@ -213,19 +213,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6721233945923744956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
-  m_Script: {fileID: 11500000, guid: 8b6319d7795eaee4dbebe57b9d19f0d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnlyFireWithinRange: 1
-  Range: 0
-  FireRateSecs: 1
-  MagazineSizeMax: 1
-  ReloadTimeSecs: 3
-  _ToInstantiate: {fileID: 0}
-  _ParentEntity: {fileID: 0}
-  _AttachedRadar: {fileID: 0}
-=======
   m_Script: {fileID: 11500000, guid: 4ea2b3eca384b694d9e41ded3de0ce63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -237,7 +224,6 @@ MonoBehaviour:
   _ToInstantiate: {fileID: 3295445155491914965, guid: cc5f05b47489073469769727b0bf93f7, type: 3}
   _ParentEntity: {fileID: 983562832274538976}
   _AttachedRadar: {fileID: 5717131693765825463}
->>>>>>> a38522283d921c1d856da1ae4a81016a13202385
   shotsLeft: 0
   reloading: 0
   onCoolDown: 0
