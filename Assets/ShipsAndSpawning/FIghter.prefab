@@ -217,9 +217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnlyFireWithinRange: 1
   Range: 0
-  FireRateSecs: 1
-  MagazineSizeMax: 1
-  ReloadTimeSecs: 3
+  FireRateSecs: 0.2
+  MagazineSizeMax: 3
+  ReloadTimeSecs: 1.5
   _ToInstantiate: {fileID: 1234693168582235245, guid: 15ee90db8222e614f9cef02a209a4e84, type: 3}
   _ParentEntity: {fileID: 8711593493770931853}
   _AttachedRadar: {fileID: 8711593493770931852}
