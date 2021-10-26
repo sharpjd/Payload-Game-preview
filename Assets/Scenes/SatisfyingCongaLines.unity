@@ -734,7 +734,7 @@ MonoBehaviour:
   ZoomScrollChangeDivisor: 1.5
   ZoomVelocityDivisor: 0.5
   MovementSpeedPerSecond: 4
-  MovementMultipliedByZoomCoefficient: 2
+  MovementMultipliedByZoomCoefficient: 8
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoRandomGeneration: 1
-  LevelState: 1
+  LevelState: 2
   EnemyBank: 0
   FriendlyBank: 0
   TeamsToPlace:

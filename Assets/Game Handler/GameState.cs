@@ -18,6 +18,11 @@ public class GameState : MonoBehaviour
 
     private void Awake()
     {
+
+        Screen.SetResolution(1280, 720, false);
+        QualitySettings.vSyncCount = 2;
+        Application.targetFrameRate = 120;
+
         Instance = this;
 
         Debug.Log("Started game state instance");
