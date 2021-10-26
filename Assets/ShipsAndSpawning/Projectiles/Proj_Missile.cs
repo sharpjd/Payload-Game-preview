@@ -14,14 +14,18 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
 
     float m_InitialVelocity;
 
-    private void Start()
+    protected override void Start()
     {
         PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
+        base.Start();
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+
         m_InitialVelocity = CurrentVelocity;
+        base.Awake();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 

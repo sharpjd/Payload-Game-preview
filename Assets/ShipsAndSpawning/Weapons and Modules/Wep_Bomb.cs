@@ -41,7 +41,7 @@ public class Wep_Bomb : Weapon
                         shotsLeft--;
                         onCoolDown = true;
                         Invoke("coolDown", FireRateSecs);
-                    } catch (InvalidCastException e)
+                    } catch (InvalidCastException)
                     {
                         Debug.LogError("InvalidCastException when trying to cast Projectile to Proj_Bomb in Wep_Bomb; does the given prefab have a Proj_Bomb script?", gameObject);
                     }

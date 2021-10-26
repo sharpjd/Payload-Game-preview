@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     protected float m_ExpirationSeconds;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         m_Velocity = Velocity;
         m_ExpirationSeconds = ExpirationSeconds;
@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    private void Start()
+    protected virtual void Start()
     {
 
         if (SpriteRenderer == null)

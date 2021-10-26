@@ -8,9 +8,10 @@ public class Proj_Regular : Projectile, IOnPoolAndRetrieve
 
     public PoolableGameObjectLink PoolableGameObjectLink { get; set; }
 
-    private void Start()
+    protected override void Start()
     {
         PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
+        base.Start();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,7 +58,7 @@ public class Proj_Regular : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnRetrieve()
     {
-        Destroy(AllegianceInfo);
+        //Destroy(AllegianceInfo);
         return this;
     }
 

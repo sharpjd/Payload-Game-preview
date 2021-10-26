@@ -10,12 +10,13 @@ public class Proj_Shrapnel : Projectile, IOnPoolAndRetrieve
 
     public float VelocityFloor = 3f;
 
-    private void Awake()
+    protected override void Awake()
     {
         Physics.IgnoreLayerCollision(6, 6);
         PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
         m_Velocity = Velocity;
         m_DistanceLifeSpan = DistanceLifeSpan;
+        base.Awake();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

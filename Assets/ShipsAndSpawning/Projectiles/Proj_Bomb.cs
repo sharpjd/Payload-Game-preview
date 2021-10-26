@@ -21,17 +21,19 @@ public class Proj_Bomb : Projectile, IOnPoolAndRetrieve
     public bool MakeSubProjectilesNeutral = true;
     [SerializeField]
     protected float m_FuseDistance;
-    private void Awake()
+    protected override void Awake()
     {
         m_Velocity = Velocity;
         m_ExpirationSeconds = ExpirationSeconds;
         m_DistanceLifeSpan = DistanceLifeSpan;
         m_FuseDistance = FuseDistance;
+        base.Awake();
     }
 
-    private void Start()
+    protected override void Start()
     {
         PoolableGameObjectLink ??= GetComponent<PoolableGameObjectLink>();
+        base.Start();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
