@@ -29,7 +29,7 @@ public class Proj_Laser : Projectile
         {
             Entity entity = hits[i].collider.gameObject.GetComponent<Entity>();
 
-            if (Targets.IsValidTarget(entity))
+            if (Targets.IsValidTarget(entity, PEntity.AllegianceInfo))
             {
                 validHitEntities.Add(entity);
             }

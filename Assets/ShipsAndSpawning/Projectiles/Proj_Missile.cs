@@ -55,7 +55,7 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
             PredictCollision();
         transform.position += transform.right * Velocity * Time.fixedDeltaTime;
 
-        if (Targets.IsValidTarget(TargetEntity))
+        if (Targets.IsValidTarget(TargetEntity, PEntity.AllegianceInfo))
         {
             TurnToVec(TargetEntity.transform.position);
         }

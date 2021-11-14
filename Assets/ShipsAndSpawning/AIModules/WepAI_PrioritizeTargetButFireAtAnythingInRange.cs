@@ -12,20 +12,20 @@ public class WepAI_PrioritizeTargetButFireAtAnythingInRange : AIWeaponController
     public void Update()
     {
 
-        if (Targets.IsValidTarget(Target) && Weapon.IsInRange(Target))
+        if (Targets.IsValidTarget(Target, PEntity.AllegianceInfo) && Weapon.IsInRange(Target))
         {
             Weapon.TryFire(Target);
         }
         else
         {
-            if (Targets.IsValidTarget(AlternativeTarget) && Weapon.IsInRange(AlternativeTarget))
+            if (Targets.IsValidTarget(AlternativeTarget, PEntity.AllegianceInfo) && Weapon.IsInRange(AlternativeTarget))
             {
                 Weapon.TryFire(AlternativeTarget);
             }
             else
             {
                 TryCheckForAlternativeTarget();
-                if (Targets.IsValidTarget(AlternativeTarget))
+                if (Targets.IsValidTarget(AlternativeTarget, PEntity.AllegianceInfo))
                 {
                     Weapon.TryFire(AlternativeTarget);
                 }
