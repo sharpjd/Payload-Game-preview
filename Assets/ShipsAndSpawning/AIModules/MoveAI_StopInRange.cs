@@ -48,7 +48,7 @@ public class MoveAI_StopInRange : AIMovementController
     public override void PostFixedUpdate()
     {
 
-        if (Target == null)
+        if (!Targets.IsValidTarget(Target))
             return;
 
         if (DoStopInRange)

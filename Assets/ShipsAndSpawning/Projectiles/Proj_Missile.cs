@@ -11,6 +11,7 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
     public float CurrentVelocity = 1f;
     public float AccelerationPerSecond = 20f;
     public float TurnRate = 120f;
+    public float AutoAcquireDelaySecs = 2f;
 
     float m_InitialVelocity;
 
@@ -19,7 +20,6 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
         PoolableGameObjectLink = GetComponent<PoolableGameObjectLink>();
         base.Start();
     }
-
     protected override void Awake()
     {
 
@@ -85,12 +85,7 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
         }
     }
 
-    bool DoAutoAcquireTargets = true;
-    public float AutoAcquireDelaySecs = 2f;
-
-    private float LastUpdateTime = 0f;
-
-    bool checkedForTargetBeforeRefreshTime = false;
+    
 
     public override void  PostStart()
     {
@@ -102,9 +97,16 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
         //PEntity.AllegianceInfo = (AllegianceInfo)gameObject.AddComponent(AllegianceInfo.GetType());
     }
 
+    bool DoAutoAcquireTargets = true;
+
+    private float LastUpdateTime = 0f;
+
+    bool checkedForTargetBeforeRefreshTime = false;
     public void Update()
     {
-        //Debug.Log((Target == null) + ", " + checkedForTargetBeforeRefreshTime);
+
+        if (!DoAutoAcquireTargets)
+            return;
 
         if (TargetEntity != null)
         {
@@ -118,8 +120,7 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
             TargetEntity = Targets.GetClosestTarget(transform.position, PEntity, new List<ShipType>());
         }
 
-        //will not find another target if not null
-        if (DoAutoAcquireTargets && TargetEntity == null && Time.time - LastUpdateTime > AutoAcquireDelaySecs)
+        if (TargetEntity == null && Time.time - LastUpdateTime > AutoAcquireDelaySecs)
         {
             checkedForTargetBeforeRefreshTime = false;
             LastUpdateTime = Time.time;
@@ -135,7 +136,6 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
 
     public IOnPoolAndRetrieve OnPool()
     {
-
         DistanceLifeSpan = m_DistanceLifeSpan;
         ExpirationSeconds = m_ExpirationSeconds;
         CurrentVelocity = m_InitialVelocity;

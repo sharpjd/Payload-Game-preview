@@ -23,15 +23,11 @@ public class TeamLineupContainer : MonoBehaviour
     public void UpdateLineupCounts()
     {
 
-        
-
-        List<Entity> teamEntities = Targets.GetAllTargetsOfFaction(AllegianceInfo.Faction, new List<ShipType>(new ShipType[] { ShipType.Placeholder }));
+        List<Entity> teamEntities = Targets.GetAllTargetsOfFaction(AllegianceInfo.Faction);
 
         foreach (UIShipSpriteContainer uIShipSprite in LineupUIShipSpriteContainers)
         {
-
             int count = 0;
-
             for (int i = 0; i < teamEntities.Count; i++)
             {
                 if(teamEntities[i].ShipType == uIShipSprite.ShipType)
@@ -42,8 +38,5 @@ public class TeamLineupContainer : MonoBehaviour
 
             uIShipSprite.Count = count;
         }
-
     }
-    
-
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 [RequireComponent(typeof(Radar))]
-public class AIModule : MonoBehaviour
+public class AIModule : MonoBehaviour, IOnPoolAndRetrieve
 {
     public bool TargetingOverriden = false;
     public bool PreventTargetOverride = false;
@@ -70,14 +70,12 @@ public class AIModule : MonoBehaviour
             _ParentRadar = value ?? throw new CriticalNullAssignmentException();
         }
     }
+
+    public PoolableGameObjectLink PoolableGameObjectLink { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     //DO NOT CALL FROM OTHER THAN AWAKE OR START
     [SerializeField]
     private Radar _ParentRadar;
-
-    public virtual void Awake()
-    {
-        
-    }
 
     public void Start()
     {
@@ -111,4 +109,15 @@ public class AIModule : MonoBehaviour
 
     }
 
+    public IOnPoolAndRetrieve OnRetrieve()
+    {
+        return this;
+    }
+
+    public IOnPoolAndRetrieve OnPool()
+    {
+        TargetingOverriden = false;
+        Target = null;
+        return this;
+    }
 }

@@ -57,7 +57,6 @@ public class Targets : MonoBehaviour
         return targetsTotal;
     }
 
-
     private void ClearNullsFromGlobalList()
     {
 
@@ -110,13 +109,12 @@ public class Targets : MonoBehaviour
             }
         }
 
+        //create a new faction list if the registrant was not found; will only be reached if return is never reached in loop above
         FactionTargetList newFactionTargetList = Instance.gameObject.AddComponent<FactionTargetList>();
         newFactionTargetList.faction = ((AllegianceInfo)Instance.gameObject.AddComponent(self.AllegianceInfo.GetType())).Faction;
-        Debug.Log("bruh " + newFactionTargetList);//WHY DO THESE THROW NULLREFERENCES???
         factionTargetLists.Add(newFactionTargetList);
         newFactionTargetList.targets.Add(self);
     }
-
 
     public static Entity GetClosestTarget(Vector2 origin, Entity self, List<ShipType> shipTypesToExclude)
     {
@@ -144,6 +142,34 @@ public class Targets : MonoBehaviour
         return closestTarget;
 
     }
+    public static Entity GetClosestTarget(Vector2 origin, Entity self)
+    {
+        Entity closestTarget = null;
+
+        for (int i = 0; i < self.AllegianceInfo.TargetFactions.Length; i++)
+        {
+            float currentClosestDistance = float.MaxValue;
+            List<Entity> targets = GetFactionTargetList(self.AllegianceInfo.TargetFactions[i])?.targets;
+
+            for (int j = 0; j < targets?.Count; j++)
+            {
+                if (!IsValidTarget(targets[j]))
+                    continue;
+
+                float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
+                if (distance <= currentClosestDistance && targets[j].AllegianceInfo.ID != self.AllegianceInfo.ID)
+                {
+                    currentClosestDistance = distance;
+                    closestTarget = targets[j];
+                }
+            }
+        }
+
+        return closestTarget;
+
+    }
+
+
 
     public static Entity GetClosestAlly(Vector2 origin, Entity self)
     {
@@ -196,6 +222,32 @@ public class Targets : MonoBehaviour
 
         return closestTarget;
     }
+    public static Entity GetClosestTargetInRange(Vector2 origin, Entity self, float rangeRadius)
+    {
+        Entity closestTarget = null;
+
+        for (int i = 0; i < self.AllegianceInfo.TargetFactions.Length; i++)
+        {
+
+            float currentClosestDistance = float.MaxValue;
+            List<Entity> targets = GetFactionTargetList(self.AllegianceInfo.TargetFactions[i])?.targets;
+
+            for (int j = 0; j < targets?.Count; j++)
+            {
+                if (!IsValidTarget(targets[j]))
+                    continue;
+
+                float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
+                if (distance <= currentClosestDistance && distance <= rangeRadius && targets[j].AllegianceInfo.ID != self.AllegianceInfo.ID)
+                {
+                    currentClosestDistance = distance;
+                    closestTarget = targets[j];
+                }
+            }
+        }
+
+        return closestTarget;
+    }
 
 
 
@@ -224,11 +276,37 @@ public class Targets : MonoBehaviour
         return inRangeTargets;
 
     }
+    public static List<Entity> GetTargetsWithinRange(Vector2 origin, float rangeRadius, Entity self)
+    {
+
+        List<Entity> inRangeTargets = new List<Entity>();
+
+        for (int i = 0; i < self.AllegianceInfo.TargetFactions.Length; i++)
+        {
+            List<Entity> targets = GetFactionTargetList(self.AllegianceInfo.TargetFactions[i])?.targets;
+
+            for (int j = 0; j < targets?.Count; j++)
+            {
+                if (!IsValidTarget(targets[j]))
+                    continue;
+
+                float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
+                if (distance <= rangeRadius && targets[j].AllegianceInfo.ID != self.AllegianceInfo.ID)
+                {
+                    inRangeTargets.Add(targets[j]);
+                }
+            }
+        }
+
+        return inRangeTargets;
+
+    }
+
+
 
     public static List<Entity> GetAllTargetsOfFaction(Factions faction, List<ShipType> shipTypesToExclude)
     {
         List<Entity> entities = new List<Entity>(GetFactionTargetList(faction).targets);
-
         for (int i = entities.Count - 1; i >= 0; i--)
         {
             if (shipTypesToExclude.Contains(entities[i].ShipType))
@@ -236,10 +314,13 @@ public class Targets : MonoBehaviour
                 entities.Remove(entities[i]);
             }
         }
-
         return entities;
-
     }
+    public static List<Entity> GetAllTargetsOfFaction(Factions faction)
+    {
+        return new List<Entity>(GetFactionTargetList(faction).targets);
+    }
+
 
     public static List<Entity> GetAllTargetsOfFactionRemoveInvalidsAndNonCounts(Factions faction, List<ShipType> shipTypesToExclude)
     {
@@ -257,10 +338,22 @@ public class Targets : MonoBehaviour
 
     }
 
+    public static List<Entity> GetAllTargetsOfFactionRemoveInvalidsAndNonCounts(Factions faction)
+    {
+        return new List<Entity>(GetFactionTargetList(faction).targets);
+        
+    }
+
 
     public static bool IsValidTarget(Entity entity)
     {
         if (entity == null || entity.gameObject == null || entity.AllegianceInfo == null || entity.IsDead) return false;
+        return true;
+    }
+
+    public static bool IsValidTarget(Entity entity, AllegianceInfo callerAllegianceInfo)
+    {
+        if (entity == null || entity.gameObject == null || entity.AllegianceInfo == null || entity.IsDead && !callerAllegianceInfo.CanHit(entity.AllegianceInfo.Faction, callerAllegianceInfo.ID)) return false;
         return true;
     }
 

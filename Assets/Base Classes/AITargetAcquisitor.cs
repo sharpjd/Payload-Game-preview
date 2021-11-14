@@ -27,9 +27,4 @@ public class AITargetAcquisitor : AIModule
         }
     }
 
-    public virtual void PostPostStart()
-    {
-
-    }
-
 }

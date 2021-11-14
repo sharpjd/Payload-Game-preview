@@ -29,7 +29,6 @@ public class TargAI_FocusDown : AITargetAcquisitor
         //will not find another target if not null
         if (DoAutoAcquireTargets && !Targets.IsValidTarget(ApeThisTarget) && Time.time - LastUpdateTime > AutoAcquireDelaySecs)
         {
-            //Debug.Log($"{PEntity.ShipType}: tried to find a closest target");
             LastUpdateTime = Time.time;
             ApeThisTarget = Targets.GetClosestTarget(PEntity.transform.position, PEntity, ShipTypesToIgnore);
             SetAllTargets(ApeThisTarget);
