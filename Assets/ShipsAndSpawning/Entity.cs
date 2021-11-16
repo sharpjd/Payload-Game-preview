@@ -228,13 +228,13 @@ public class Entity : MonoBehaviour
      * (e.g. when many Shrapnel projectiles hit it at all at once) and causing immense lag due to many death animations
      * being instantiated at once
      */
-    protected bool didDestruct = false;
+    protected bool didOnDestruction = false;
     public virtual void OnDestruction()
     {
 
-        if (didDestruct) return;
-
-        didDestruct = true;
+        if (didOnDestruction) return;
+         
+        didOnDestruction = true;
 
         if (PlayDestructionAnimationOnDeath)
             PlayDestructionAnimation();

@@ -11,9 +11,9 @@ public class BombEntity : Entity, IOnPoolAndRetrieve
     public override void OnDestruction()
     {
 
-        if (didDestruct) return;
+        if (didOnDestruction) return;
 
-        didDestruct = true;
+        didOnDestruction = true;
 
         Proj_Bomb.OnDestruction();
 
@@ -27,7 +27,7 @@ public class BombEntity : Entity, IOnPoolAndRetrieve
         OnDehighlight();
         HitpointHandler.Hitpoints = HitpointHandler.MaxHitpoints;
         Destroy(AllegianceInfo);
-        didDestruct = false;
+        didOnDestruction = false;
 
         //Targets.RemoveEntityFromTargets(this);
 

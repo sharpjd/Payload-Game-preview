@@ -142,7 +142,6 @@ public class Proj_Missile : Projectile, IOnPoolAndRetrieve
         Destroy(AllegianceInfo);
         DeltaVelocity = new Vector2();
 
-        gameObject.SetActive(false);
         return this;
     }
 

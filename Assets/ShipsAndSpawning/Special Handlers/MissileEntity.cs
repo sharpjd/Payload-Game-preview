@@ -21,7 +21,6 @@ public class MissileEntity : Entity, IOnPoolAndRetrieve
         OnDehighlight();
         HitpointHandler.Hitpoints = HitpointHandler.MaxHitpoints;
         Destroy(AllegianceInfo);
-        didDestruct = false;
 
         //Targets.RemoveEntityFromTargets(this);
 
@@ -31,14 +30,15 @@ public class MissileEntity : Entity, IOnPoolAndRetrieve
     public IOnPoolAndRetrieve OnRetrieve()
     {
         //FrameBasedExecutor.Instance.ExecuteNextFrame(new System.Action(Start));
+        didOnDestruction = false;
         return this;
     }
 
     public override void OnDestruction()
     {
-        if (didDestruct) return;
+        if (didOnDestruction) return;
 
-        didDestruct = true;
+        didOnDestruction = true;
 
         if (PlayDestructionAnimationOnDeath)
             PlayDestructionAnimation();

@@ -31,7 +31,7 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
     public IOnPoolAndRetrieve OnRetrieve()
     {
         IsDead = false;
-        didDestruct = false;
+        didOnDestruction = false;
         DeltaVelocity = new Vector2();
         //FrameBasedExecutor.Instance.ExecuteNextFrame(new System.Action(Start));
         return this;
@@ -47,9 +47,9 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
 
     public override void OnDestruction()
     {
-        if (didDestruct) return;
+        if (didOnDestruction) return;
 
-        didDestruct = true;
+        didOnDestruction = true;
 
         if (PlayDestructionAnimationOnDeath)
             PlayDestructionAnimation();

@@ -104,7 +104,8 @@ public class Targets : MonoBehaviour
         {
             if (factionTargetLists[i].faction == self.AllegianceInfo.Faction)
             {
-                factionTargetLists[i].targets.Add(self);
+                //if(!factionTargetLists[i].targets.Contains(self))
+                    factionTargetLists[i].targets.Add(self);
                 return;
             }
         }
@@ -127,7 +128,7 @@ public class Targets : MonoBehaviour
 
             for (int j = 0; j < targets?.Count; j++)
             {
-                if (!IsValidTarget(targets[j]))
+                if (!IsValidTarget(targets[j], self.AllegianceInfo))
                     continue;
 
                 float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
@@ -153,7 +154,7 @@ public class Targets : MonoBehaviour
 
             for (int j = 0; j < targets?.Count; j++)
             {
-                if (!IsValidTarget(targets[j]))
+                if (!IsValidTarget(targets[j], self.AllegianceInfo))
                     continue;
 
                 float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
@@ -208,7 +209,7 @@ public class Targets : MonoBehaviour
 
             for (int j = 0; j < targets?.Count; j++)
             {
-                if (!IsValidTarget(targets[j]))
+                if (!IsValidTarget(targets[j], self.AllegianceInfo))
                     continue;
 
                 float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
@@ -234,7 +235,7 @@ public class Targets : MonoBehaviour
 
             for (int j = 0; j < targets?.Count; j++)
             {
-                if (!IsValidTarget(targets[j]))
+                if (!IsValidTarget(targets[j], self.AllegianceInfo))
                     continue;
 
                 float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
@@ -262,7 +263,7 @@ public class Targets : MonoBehaviour
 
             for (int j = 0; j < targets?.Count; j++)
             {
-                if (!IsValidTarget(targets[j]))
+                if (!IsValidTarget(targets[j], self.AllegianceInfo))
                     continue;
 
                 float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
@@ -287,7 +288,7 @@ public class Targets : MonoBehaviour
 
             for (int j = 0; j < targets?.Count; j++)
             {
-                if (!IsValidTarget(targets[j]))
+                if (!IsValidTarget(targets[j], self.AllegianceInfo))
                     continue;
 
                 float distance = Vector2.Distance(origin, targets[j].gameObject.transform.position);
@@ -347,13 +348,13 @@ public class Targets : MonoBehaviour
 
     public static bool IsValidTarget(Entity entity)
     {
-        if (entity == null || entity.gameObject == null || entity.AllegianceInfo == null || entity.IsDead) return false;
+        if (entity == null || entity.gameObject == null || !entity.gameObject.activeSelf || entity.AllegianceInfo == null || entity.IsDead) return false;
         return true;
     }
 
     public static bool IsValidTarget(Entity entity, AllegianceInfo callerAllegianceInfo)
     {
-        if (entity == null || entity.gameObject == null || entity.AllegianceInfo == null || entity.IsDead && !callerAllegianceInfo.CanHit(entity.AllegianceInfo.Faction, callerAllegianceInfo.ID)) return false;
+        if (entity == null || entity.gameObject == null || !entity.gameObject.activeSelf || entity.AllegianceInfo == null || entity.IsDead && !callerAllegianceInfo.CanHit(entity.AllegianceInfo.Faction, callerAllegianceInfo.ID)) return false;
         return true;
     }
 
