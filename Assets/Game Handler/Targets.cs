@@ -348,13 +348,13 @@ public class Targets : MonoBehaviour
 
     public static bool IsValidTarget(Entity entity)
     {
-        if (entity == null || entity.gameObject == null || !entity.gameObject.activeSelf || entity.AllegianceInfo == null || entity.IsDead) return false;
+        if (entity == null || entity.gameObject == null || !entity.gameObject.activeInHierarchy || entity.AllegianceInfo == null || entity.IsDead) return false;
         return true;
     }
 
     public static bool IsValidTarget(Entity entity, AllegianceInfo callerAllegianceInfo)
     {
-        if (entity == null || entity.gameObject == null || !entity.gameObject.activeSelf || entity.AllegianceInfo == null || entity.IsDead && !callerAllegianceInfo.CanHit(entity.AllegianceInfo.Faction, callerAllegianceInfo.ID)) return false;
+        if (entity == null || entity.gameObject == null || !entity.gameObject.activeInHierarchy || entity.AllegianceInfo == null || entity.IsDead || !callerAllegianceInfo.CanHit(entity.AllegianceInfo.Faction, entity.AllegianceInfo.ID)) return false;
         return true;
     }
 

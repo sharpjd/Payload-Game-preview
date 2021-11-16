@@ -6,6 +6,9 @@ public class WepAI_PrioritizeTargetButFireAtAnythingInRange : AIWeaponController
 {
 
     public Entity AlternativeTarget;
+
+
+
     [Tooltip("Getting a target is expensive. This is how often it can check for alternative targets")]
     float SecondsBeforeCheckingAlternativeTarget = 1f;
 

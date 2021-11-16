@@ -17,7 +17,7 @@ public class AIModule : MonoBehaviour, IOnPoolAndRetrieve
     {
         get
         {
-            if(_target == null)
+            if(!Targets.IsValidTarget(_target))
             {
                 TargetingOverriden = false;
             }
