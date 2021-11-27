@@ -17,6 +17,7 @@ using UnityEngine;
  * initial values
  * 
  * Note: GameObjects to be pooled require a PoolableGameObjectLink to function. 
+ * Note 2: This particular project generally puts de-pool initialization actions in the OnRetrieve() methods.
  */
 public interface IOnPoolAndRetrieve
 {

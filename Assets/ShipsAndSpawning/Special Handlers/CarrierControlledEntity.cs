@@ -32,9 +32,14 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
     {
         IsDead = false;
         didOnDestruction = false;
+        FrameBasedExecutor.Instance.ExecuteNextFrame(new System.Action(addAsTarget)); 
         DeltaVelocity = new Vector2();
-        //FrameBasedExecutor.Instance.ExecuteNextFrame(new System.Action(Start));
         return this;
+
+        void addAsTarget()
+        {
+            Targets.AddAsTarget(this);
+        };
     }
 
     public void Update()
@@ -62,5 +67,4 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
 
         Pooler.Instance.PoolGameObject(PoolableGameObjectLink);
     }
-
 }

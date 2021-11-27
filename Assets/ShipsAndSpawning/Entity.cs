@@ -263,6 +263,27 @@ public class Entity : MonoBehaviour
         destructionPrefab.transform.position = transform.position;
 
     }
+
+    public override bool Equals(object other)
+    {
+        try
+        {
+            Entity entity = other as Entity;
+            if (entity.AllegianceInfo.ID == AllegianceInfo.ID) return true;
+            else return false;
+        }
+        catch (System.InvalidCastException)
+        {
+            return false;
+        }
+    }
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+
+
 }
 
 public enum ShipType
