@@ -7,6 +7,7 @@ public class Shield : MonoBehaviour
 
     public Entity PEntity;
     public ShieldHitpointHandler ShieldHitpointHandler;
+
     public float MaxRadius = 4f;
 
     public float RechargeTimeSeconds = 20f;
@@ -14,11 +15,30 @@ public class Shield : MonoBehaviour
     public bool Broken = false;
     public float BrokenShrinkRatePerSecond = 3f;
     public float RestartRegenerationPerSecond = 800f;
-    public float HPToBreak = 1000f; 
+    public float RestartHPInjection = 1500f;
+    [SerializeField]
+    private float RemainingInjection = 0f;
 
+    public float PercentageToBreak = 0.1f;
+
+    public float InvulnerabilitySeconds = 5f;
+    public float InvulnerabilityAnimationSpeed = 3.5f;
+
+    private SpriteRenderer SpriteRenderer;
+
+    private float AnimationDenominator
+    {
+        get
+        {
+            return 1 / InvulnerabilityAnimationSpeed;
+        }
+    }
 
     void Start()
     {
+
+        SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
         if (ShieldHitpointHandler == null)
         {
             Debug.LogError("Shield not assigned a ShieldHitpointHandler");
@@ -33,8 +53,19 @@ public class Shield : MonoBehaviour
 
     }
 
-    public bool Regenerating;
+    public void OnRegenerate()
+    {
+        RegenerationTimeStart = Time.time;
+        RemainingInjection = RestartHPInjection;
+        Broken = false;
+        Regenerating = true;
+    }
 
+    
+    public bool Regenerating;
+    public float RegenerationTimeStart;
+
+    bool didResetShield = false;
     private void Update()
     {
         if (!Broken)
@@ -44,10 +75,12 @@ public class Shield : MonoBehaviour
             Vector3 ShieldSizeVec = new Vector3(ShieldRadius, ShieldRadius, 1);
 
             transform.localScale = ShieldSizeVec;
-        }
 
-        if (ShieldHitpointHandler.Hitpoints < HPToBreak)
-            OnBroken();
+            if (ShieldHitpointHandler.Hitpoints / ShieldHitpointHandler.MaxHitpoints < PercentageToBreak)
+                OnBroken();
+
+        }
+        
 
         if(Broken)
         {
@@ -63,13 +96,30 @@ public class Shield : MonoBehaviour
 
         if (Regenerating)
         {
-            ShieldHitpointHandler.Hitpoints += RestartRegenerationPerSecond * Time.deltaTime;
-        }
+            didResetShield = true;
 
-        if(ShieldHitpointHandler.Hitpoints > ShieldHitpointHandler.MaxHitpoints)
+            ShieldHitpointHandler.Invulnerable = true;
+
+            ShieldHitpointHandler.Hitpoints += RestartRegenerationPerSecond * Time.deltaTime;
+            RemainingInjection -= RestartRegenerationPerSecond * Time.deltaTime;
+
+            float a = 0.5f * Mathf.Cos((Time.time - RegenerationTimeStart) / AnimationDenominator) + 0.5f;
+
+            SpriteRenderer.color = new Color(SpriteRenderer.color.r, SpriteRenderer.color.g, SpriteRenderer.color.b, a);
+
+            if (ShieldHitpointHandler.Hitpoints > ShieldHitpointHandler.MaxHitpoints || RemainingInjection <= 0 || Time.time - RegenerationTimeStart > InvulnerabilitySeconds)
+            {
+                Regenerating = false;
+            }
+        }
+        else
         {
-            Regenerating = false;
-            ShieldHitpointHandler.Hitpoints = ShieldHitpointHandler.MaxHitpoints;
+            if (!didResetShield)
+            {
+                SpriteRenderer.color = new Color(SpriteRenderer.color.r, SpriteRenderer.color.g, SpriteRenderer.color.b, 1);
+                ShieldHitpointHandler.Invulnerable = false;
+                didResetShield = true;
+            }
         }
 
     }
@@ -78,13 +128,8 @@ public class Shield : MonoBehaviour
     {
         Broken = true;
         Invoke("OnRegenerate", RechargeTimeSeconds);
-
     }
 
-    public void OnRegenerate()
-    {
-        Broken = false;
-        Regenerating = true;
-    }
+    
 
 }

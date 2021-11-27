@@ -114,6 +114,7 @@ MonoBehaviour:
   OnlyTargetAllies: 1
   PlayDestructionAnimationOnDeath: 1
   DestructionPrefab: {fileID: 0}
+  CountTowardsTeamCount: 1
   pushQueue: {x: 0, y: 0}
   _AllegianceInfo: {fileID: 0}
   SelectionCircleY: 1.8
@@ -351,6 +352,7 @@ MonoBehaviour:
   OnlyTargetAllies: 0
   PlayDestructionAnimationOnDeath: 1
   DestructionPrefab: {fileID: 0}
+  CountTowardsTeamCount: 1
   pushQueue: {x: 0, y: 0}
   _AllegianceInfo: {fileID: 0}
   SelectionCircleY: 1
@@ -375,8 +377,13 @@ MonoBehaviour:
   Broken: 0
   BrokenShrinkRatePerSecond: 15
   RestartRegenerationPerSecond: 300
-  HPToBreak: 500
+  RestartHPInjection: 1500
+  RemainingInjection: 0
+  PercentageToBreak: 0.35
+  InvulnerabilitySeconds: 5
+  InvulnerabilityAnimationSpeed: 3.5
   Regenerating: 0
+  RegenerationTimeStart: 0
 --- !u!114 &5729687086926550616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +401,7 @@ MonoBehaviour:
   DoRegeneration: 1
   RegenPerSecond: 10
   PEntity: {fileID: 0}
+  Invulnerable: 0
   Shield: {fileID: 5729687086926550617}
 --- !u!58 &5729687086926550597
 CircleCollider2D:

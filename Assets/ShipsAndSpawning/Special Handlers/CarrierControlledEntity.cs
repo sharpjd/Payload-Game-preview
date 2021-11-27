@@ -23,7 +23,8 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
         HitpointHandler.Hitpoints = HitpointHandler.MaxHitpoints;
         Destroy(AllegianceInfo);
 
-        Targets.RemoveEntityFromTargets(this);
+        Debug.Log(Targets.RemoveEntityFromTargets(this));
+        
 
         return this;
     }
@@ -39,6 +40,8 @@ public class CarrierControlledEntity : Entity, IOnPoolAndRetrieve
         void addAsTarget()
         {
             Targets.AddAsTarget(this);
+            Debug.Log(Targets.GetAllTargetsOfFaction(AllegianceInfo.Faction).Contains(this));
+
         };
     }
 
