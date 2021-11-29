@@ -380,8 +380,8 @@ MonoBehaviour:
   RestartHPInjection: 1500
   RemainingInjection: 0
   PercentageToBreak: 0.35
-  InvulnerabilitySeconds: 5
-  InvulnerabilityAnimationSpeed: 3.5
+  InvulnerabilitySeconds: 8
+  InvulnerabilityAnimationSpeed: 10
   Regenerating: 0
   RegenerationTimeStart: 0
 --- !u!114 &5729687086926550616

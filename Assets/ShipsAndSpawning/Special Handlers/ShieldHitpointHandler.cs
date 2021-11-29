@@ -12,7 +12,7 @@ public class ShieldHitpointHandler : HitpointHandler
     {
         if (!Shield.Broken)
         {
-            if (DoRegeneration)
+            if (DoRegeneration && !Shield.Broken)
             {
                 if (Hitpoints <= MaxHitpoints)
                     Hitpoints += RegenPerSecond * Time.deltaTime;

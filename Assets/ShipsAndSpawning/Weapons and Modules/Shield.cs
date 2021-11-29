@@ -55,17 +55,18 @@ public class Shield : MonoBehaviour
 
     public void OnRegenerate()
     {
+        ShieldHitpointHandler.Hitpoints = 0f;
         RegenerationTimeStart = Time.time;
         RemainingInjection = RestartHPInjection;
-        Broken = false;
         Regenerating = true;
+        Broken = false;
+        ShieldHitpointHandler.Invulnerable = true;
     }
 
     
     public bool Regenerating;
     public float RegenerationTimeStart;
 
-    bool didResetShield = false;
     private void Update()
     {
         if (!Broken)
@@ -76,15 +77,18 @@ public class Shield : MonoBehaviour
 
             transform.localScale = ShieldSizeVec;
 
-            if (ShieldHitpointHandler.Hitpoints / ShieldHitpointHandler.MaxHitpoints < PercentageToBreak)
+            
+            if (!Regenerating && ShieldHitpointHandler.Hitpoints / ShieldHitpointHandler.MaxHitpoints < PercentageToBreak)
+            {
                 OnBroken();
-
+                Broken = true;
+            }
         }
         
 
         if(Broken)
         {
-            if(transform.localScale.x < 0f || transform.localScale.y < 0f)
+            if(transform.localScale.x <= 0f || transform.localScale.y <= 0f)
             {
                 transform.localScale = new Vector3(0f, 0f, 1f);
             }
@@ -96,10 +100,6 @@ public class Shield : MonoBehaviour
 
         if (Regenerating)
         {
-            didResetShield = true;
-
-            ShieldHitpointHandler.Invulnerable = true;
-
             ShieldHitpointHandler.Hitpoints += RestartRegenerationPerSecond * Time.deltaTime;
             RemainingInjection -= RestartRegenerationPerSecond * Time.deltaTime;
 
@@ -107,26 +107,23 @@ public class Shield : MonoBehaviour
 
             SpriteRenderer.color = new Color(SpriteRenderer.color.r, SpriteRenderer.color.g, SpriteRenderer.color.b, a);
 
-            if (ShieldHitpointHandler.Hitpoints > ShieldHitpointHandler.MaxHitpoints || RemainingInjection <= 0 || Time.time - RegenerationTimeStart > InvulnerabilitySeconds)
+            if ((ShieldHitpointHandler.Hitpoints > ShieldHitpointHandler.MaxHitpoints || RemainingInjection <= 0) && Time.time - RegenerationTimeStart > InvulnerabilitySeconds)
             {
+                OnRegenerationFinish();
                 Regenerating = false;
-            }
-        }
-        else
-        {
-            if (!didResetShield)
-            {
-                SpriteRenderer.color = new Color(SpriteRenderer.color.r, SpriteRenderer.color.g, SpriteRenderer.color.b, 1);
-                ShieldHitpointHandler.Invulnerable = false;
-                didResetShield = true;
             }
         }
 
     }
 
+    void OnRegenerationFinish()
+    {
+        SpriteRenderer.color = new Color(SpriteRenderer.color.r, SpriteRenderer.color.g, SpriteRenderer.color.b, 1f);
+        ShieldHitpointHandler.Invulnerable = false;
+    }
+
     public void OnBroken()
     {
-        Broken = true;
         Invoke("OnRegenerate", RechargeTimeSeconds);
     }
 
