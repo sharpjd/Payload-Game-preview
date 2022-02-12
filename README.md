@@ -2,13 +2,18 @@
 
 [**Direct download of latest**](https://github.com/BluSharpie/Payload-Game-preview/releases/download/demo/MiniRTS_Build_0.1.0.zip)
 
-Repository for submission/portfolio purposes as a demo/proof-of-concept; there isn't much "gameplay" or player intervention, although it's still a pretty neat battle simulation. Was originally made for Brackeys Game Jam 2021.2, but did not finish in time despite best efforts — I do, however, fully intend to finish and publish this game sometime.
+Repository for portfolio purposes. The development branch is in a different repository. There isn't much "gameplay" or player intervention, although it's still a pretty neat battle simulation. Was originally made for Brackeys Game Jam 2021.2, but did not finish in time despite best efforts — I do, however, fully intend to finish and publish this game sometime. 
 
 Some preview media:
 
 ![GIF Preview Gameplay](https://github.com/BluSharpie/Payload-Game-preview/blob/main/PreviewMedia/ezgif.com-gif-maker.gif)
 
 ![Banner](https://github.com/BluSharpie/Payload-Game-preview/blob/main/PreviewMedia/2021-08-29%2005_43_42-Window.png)
+
+**Planned gameplay elements:**
+- More RTS management elements, conquest mode by capturing structures 
+- Multi-team gameplay
+- More unit variants
 
 # Download and Run:
 * Download latest from [releases](https://github.com/BluSharpie/Payload-Game-preview/releases) ([direct](https://github.com/BluSharpie/Payload-Game-preview/releases/download/demo/MiniRTS_Build_0.1.0.zip))
