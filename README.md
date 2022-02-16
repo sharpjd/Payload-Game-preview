@@ -2,7 +2,7 @@
 
 [**Direct download of latest**](https://github.com/BluSharpie/Payload-Game-preview/releases/download/demo/MiniRTS_Build_0.1.0.zip)
 
-Repository for portfolio purposes. The development branch is in a different repository. Was originally made for Brackeys Game Jam 2021.2, but did not finish in time despite best efforts — It was, however, an important learning experience. I do also intend to finish and publish this game sometime. Despite the gameplay not being fully fledged, it's still a pretty neat battle simulation.
+Repository for portfolio purposes. The development branch is in a different repository. Was originally made for Brackeys Game Jam 2021.2, but did not finish in time despite best efforts — It was, however, an important learning experience. I do also intend to finish and publish this game sometime. Despite the gameplay not being fully fledged, it's still a pretty neat battle simulation and demo of what you can do with some code and sprite manipulation.
 
 Some preview media:
 
